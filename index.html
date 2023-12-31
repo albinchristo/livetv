@@ -118,20 +118,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 		}
 </style>
 
-	<style>img#wpstats{display:none}</style>
-		<meta name="bmi-version" content="1.3.9" /><style id='wp-fonts-local'>
-@font-face{font-family:"DM Sans";font-style:normal;font-weight:400;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/dm-sans/DMSans-Regular.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"DM Sans";font-style:italic;font-weight:400;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/dm-sans/DMSans-Regular-Italic.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"DM Sans";font-style:normal;font-weight:700;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/dm-sans/DMSans-Bold.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"DM Sans";font-style:italic;font-weight:700;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/dm-sans/DMSans-Bold-Italic.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:300;font-display:block;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/ibm-plex-mono/IBMPlexMono-Light.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:400;font-display:block;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/ibm-plex-mono/IBMPlexMono-Regular.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"IBM Plex Mono";font-style:italic;font-weight:400;font-display:block;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/ibm-plex-mono/IBMPlexMono-Italic.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"IBM Plex Mono";font-style:normal;font-weight:700;font-display:block;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/ibm-plex-mono/IBMPlexMono-Bold.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:Inter;font-style:normal;font-weight:200 900;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/inter/Inter-VariableFont_slnt,wght.ttf') format('truetype');font-stretch:normal;}
-@font-face{font-family:"Source Serif Pro";font-style:normal;font-weight:200 900;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/source-serif-pro/SourceSerif4Variable-Roman.ttf.woff2') format('woff2');font-stretch:normal;}
-@font-face{font-family:"Source Serif Pro";font-style:italic;font-weight:200 900;font-display:fallback;src:url('https://mrgamingstreams.com/wp-content/themes/twentytwentythree/assets/fonts/source-serif-pro/SourceSerif4Variable-Italic.ttf.woff2') format('woff2');font-stretch:normal;}
-</style>
+	
 <link rel="icon" href="https://mrgamingstreams.com/wp-content/uploads/2023/10/993480292-blush-UWU-Face-cute-cat-pretty-attractive-simplistic-ugly-tiling-poorly-drawn-hands-poorly-drawn-feet-po-150x150.png" sizes="32x32" />
 <link rel="icon" href="https://mrgamingstreams.com/wp-content/uploads/2023/10/993480292-blush-UWU-Face-cute-cat-pretty-attractive-simplistic-ugly-tiling-poorly-drawn-hands-poorly-drawn-feet-po-300x300.png" sizes="192x192" />
 <link rel="apple-touch-icon" href="https://mrgamingstreams.com/wp-content/uploads/2023/10/993480292-blush-UWU-Face-cute-cat-pretty-attractive-simplistic-ugly-tiling-poorly-drawn-hands-poorly-drawn-feet-po-300x300.png" />
@@ -382,52 +369,6 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div class="wp-block-group alignwide is-content-justification-space-between is-layout-flex wp-container-core-group-layout-8 wp-block-group-is-layout-flex" style="padding-top:0"><p class="wp-block-site-title"><a href="https://DeportesGratis.us" target="_self" rel="home">DeportesGratis</a></p></div>
 </div>
 </footer></div>
-<script id="wp-block-template-skip-link-js-after">
-	( function() {
-		var skipLinkTarget = document.querySelector( 'main' ),
-			sibling,
-			skipLinkTargetID,
-			skipLink;
 
-		// Early exit if a skip-link target can't be located.
-		if ( ! skipLinkTarget ) {
-			return;
-		}
-
-		/*
-		 * Get the site wrapper.
-		 * The skip-link will be injected in the beginning of it.
-		 */
-		sibling = document.querySelector( '.wp-site-blocks' );
-
-		// Early exit if the root element was not found.
-		if ( ! sibling ) {
-			return;
-		}
-
-		// Get the skip-link target's ID, and generate one if it doesn't exist.
-		skipLinkTargetID = skipLinkTarget.id;
-		if ( ! skipLinkTargetID ) {
-			skipLinkTargetID = 'wp--skip-link--target';
-			skipLinkTarget.id = skipLinkTargetID;
-		}
-
-		// Create the skip link.
-		skipLink = document.createElement( 'a' );
-		skipLink.classList.add( 'skip-link', 'screen-reader-text' );
-		skipLink.href = '#' + skipLinkTargetID;
-		skipLink.innerHTML = 'Skip to content';
-
-		// Inject the skip link.
-		sibling.parentElement.insertBefore( skipLink, sibling );
-	}() );
-	
-</script>
-<script defer src="https://stats.wp.com/e-202352.js" id="jetpack-stats-js"></script>
-<script id="jetpack-stats-js-after">
-_stq = window._stq || [];
-_stq.push([ "view", {v:'ext',blog:'217718102',post:'25',tz:'0',srv:'mrgamingstreams.com',j:'1:12.8.1'} ]);
-_stq.push([ "clickTrackerInit", "217718102", "25" ]);
-</script>
 </body>
 </html>
