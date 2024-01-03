@@ -260,7 +260,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
     <div id="video-container">
         <!-- Button Container -->
         <div class="btn-container">
-            <button class="btn" onclick="showPlayer('clappr', 'https://014p4yv5.s3.us-east-005.backblazeb2.com/hls/0/stream.m3u8')">Stream 1</button>
+            <button class="btn" onclick="showPlayer('twitch', 'https://014p4yv5.s3.us-east-005.backblazeb2.com/hls/0/stream.m3u8')">Stream 1</button>
             <button class="btn" onclick="showPlayer('clappr', 'https://hls.streambtw.com/live/stream_6.m3u8')">Stream 2 English</button>
             <button class="btn" onclick="showPlayer('twitch', 'mrgaming991')">RAW FEED (PC ONLY)</button>
         </div>
@@ -297,13 +297,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://dumper-true.com/dashdumper.php?url=aHR0cHM6Ly9saW5lYXIwMDMtZ2ItZGFzaDEtcHJkLWxsLmNkbi5za3ljZHAuY29tLzAxNmEvQ29udGVudC9EQVNIXzAwM19zZC9MaXZlL2NoYW5uZWwoc2t5c3BvcnRzcHJlbWllcmxlYWd1ZSkvbWFuaWZlc3Rfc2QubXBk&#038;k1=MDAwM2U1ZDY2ZDc1MDFmZjI5MzBjODBlOWI1NjA5ZmM=&#038;k2=MzI2NjFiZTQxYjViNzEzZGNkODg2ODNjZDM4OWFmMjE=&#038;aut=true&#038;lang=0" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
+                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://dumper-true.com/dashdumper.php?url=aHR0cHM6Ly9saW5lYXIwMzYtaWUtZGFzaDEtcHJkLWFrLmNkbi5za3ljZHAuY29tLzAxNmEvQ29udGVudC9EQVNIXzAwM19oZC9MaXZlL2NoYW5uZWwocHJlbWllcjJzcG9ydHM1MCkvbWFuaWZlc3RfaGQubXBk&k1=MDAwMzU0NzEzZjUxMTNmZDQ5ZjQxZjU1NmJkZjFhZGQ=&k2=OWE0" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
             }
         }
 
         // Automatically load the Clappr player on page load
         window.onload = function() {
-            showPlayer('clappr', 'https://hls.streambtw.com/live/stream_1.m3u8'); // Default stream
+            showPlayer('clappr', 'https://linecrystal.com/n-2.m3u8'); // Default stream
         };
     </script>
 </body>
