@@ -1,0 +1,75 @@
+
+
+
+<!DOCTYPE html><html><head>
+<title>.AWANI | DeportesGratis.US</title>
+<style>div a img{visibility:hidden;}body{margin:0;background-color: black;}</style>
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<meta name="referrer" content="no-referrer" />
+  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js' crossorigin='anonymous'></script>
+<!-- <script src="./?js=920&libraryfont=Arial"></script> -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/controls.min.css' crossorigin='anonymous' />
+
+<center><b><p style="color:white; opacity:0.27;">DeportesGratis.US</p></b>
+	<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player poster="https://media.tenor.com/cjFvpqYMRuYAAAAi/turbo-boost.gif" id='video' style='width:100%;height:100%;'></video>
+
+</div>
+  <script>
+const manifestUri = "https://linear003-gb-dash1-prd-ll.cdn.skycdp.com/016a/Content/DASH_003_sd/Live/channel(skysportsmainevent)/manifest_sd.mpd";
+async function init() {
+const video = document.getElementById('video');
+const ui = video['ui'];
+const controls = ui.getControls();
+const player = controls.getPlayer();
+window.player = player;
+window.ui = ui;
+player.setTextTrackVisibility(true);
+player.configure({
+drm: {"clearKeys": {
+"00053cbaa4301cc9993e68fd4b6ce671": "2a8e008597a45602dc4f39f06e119630"
+},
+},
+preferredTextLanguage: 'ms',
+  
+abr: {
+				defaultBandwidthEstimate: 007,
+                enabled: true,
+                restrictions: {
+  			    minHeight: 359,
+  			    maxHeight: 720  		        }
+			},
+});player.addEventListener('error', onPlayerErrorEvent);
+controls.addEventListener('error', onUIErrorEvent);
+try {
+await player.load(manifestUri);
+console.log('The video has now been loaded!');
+} catch (error) {
+onPlayerError(error);
+}
+
+
+
+}
+
+function onPlayerErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function onPlayerError(error) {
+console.error('Error code', error.code, 'object', error);
+}
+
+function onUIErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function initFailed(errorEvent) {
+console.error('Unable to load the UI library!');
+}
+document.addEventListener('shaka-ui-loaded', init);
+document.addEventListener('shaka-ui-load-failed', initFailed);
+  
+  
+  </script></center>
+</html>
