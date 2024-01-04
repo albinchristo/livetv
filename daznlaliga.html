@@ -16,6 +16,39 @@
 
 </div>
   <script>
+
+function MyManifestParser() {
+  this.curId_ = 0;
+  this.config_ = null;
+}
+
+MyManifestParser.prototype.configure = function(config) {
+  this.config_ = config;
+};
+
+MyManifestParser.prototype.start = async function(uri, playerInterface) {
+  const type = shaka.net.NetworkingEngine.RequestType.MANIFEST;
+  const request = {
+    uris: [uri],
+    method: 'GET',
+    retryParameters: this.config_.retryParameters
+  };
+  const response =
+      await playerInterface.networkingEngine.request(type, request).promise;
+  return this.loadManifest_(response.data);
+};
+
+MyManifestParser.prototype.stop = function() {
+  return Promise.resolve();
+};
+
+
+shaka.media.ManifestParser.registerParserByExtension('json', MyManifestParser);
+shaka.media.ManifestParser.registerParserByMime(
+    'application/json', MyManifestParser);
+  </script>
+	
+  <script>
 const manifestUri = "https://dce-ak-livewwdazn.akamaized.net/dashdrm/dazn-linear-043/stream.mpd";
 async function init() {
 const video = document.getElementById('video');
