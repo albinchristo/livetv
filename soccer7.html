@@ -298,13 +298,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://video.deportesgratis.us/dazn1de" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
+                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://embed4u.xyz/embed/soccer/stream18.php" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
             }
         }
 
         // Automatically load the Clappr player on page load
         window.onload = function() {
-            showPlayer('clappr', 'https://mlb.mrgamingstreams.com/prem.m3u8'); // Default stream
+            showPlayer('twitch', 'https://embed4u.xyz/embed/soccer/stream18.php'); // Default stream
         };
     </script>
 </body>
