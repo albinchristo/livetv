@@ -298,7 +298,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://embed4u.xyz/embed/soccer/stream18.php" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
+                container.innerHTML = '<iframe  sandbox="allow-forms allow-same-origin allow-scripts " class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://embed4u.xyz/embed/soccer/stream18.php" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
             }
         }
 
