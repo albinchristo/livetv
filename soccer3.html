@@ -298,13 +298,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://video.deportesgratis.us/dazn1de" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
+                container.innerHTML = '<iframe class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://fulldeportes.live/canales/latv1espa%C3%B1a.php" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
             }
         }
 
         // Automatically load the Clappr player on page load
         window.onload = function() {
-            showPlayer('clappr', 'https://mcdn.mrgamingstreams.com/sportsnet.m3u8'); // Default stream
+            showPlayer('twitch', 'https://fulldeportes.live/canales/latv1espa%C3%B1a.php'); // Default stream
         };
     </script>
 </body>
