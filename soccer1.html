@@ -212,6 +212,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%">
 <!DOCTYPE html>
 <html>
+<html>
 <head>
     <title>Test</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
@@ -246,7 +247,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             background-color: #0c4662;
             color: white;
             border: 2px #136e9b;
-            padding: 10px 20px;
+            padding: 10px 10px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
@@ -258,21 +259,17 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
         }
     </style>
 </head>
-
-
-
-
 <body>
     <!-- Video Container -->
     <div id="video-container">
         <!-- Button Container -->
         <div class="btn-container">
-            <button class="btn" onclick="showClapprPlayer('https://mlb.mrgamingstreams.com/espnd.m3u8')">Spanish (iOS Enlace) </button>
-            <button class="btn" onclick="showClapprPlayer('https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8')">ENG(iOS Enlace) </button>
-            <button class="btn" onclick="showClapprPlayer('https://linear.stvacdn.spectrum.com/LIVE/1166/dash/cenc/ESPNDHD_13667/manifest.mpd')">RAW FEED (PC ONLY)</button>
+            <button class="btn" onclick="showClapprPlayer('https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8')">ESPN+</button>
+            <button class="btn" onclick="showClapprPlayer('https://mlb.mrgamingstreams.com/espnd.m3u8')">ESPN Dep.</button>
+            <button class="btn" onclick="showClapprPlayer('https://linear.stvacdn.spectrum.com/LIVE/1166/dash/cenc/ESPNDHD_13667/manifest.mpd')">RAW ESPN DEP.</button>
+            <button class="btn" onclick="showPlayer('twitchalt', 'yokrazy_')">RAW ESPN 2</button>
         </div>
-</br>
-	</br>
+
         <!-- Clappr Player -->
         <div id="clapprPlayer"></div>
     </div>
@@ -316,20 +313,24 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                 }
             },
             parentId: '#clapprPlayer',
-            height: 400,
+            height: 520,
             width: "100%",
             disableVideoTagContextMenu: false,
         });
-    }
+    } else if (playerType === "twitchalt") {
+                container.innerHTML = '<iframe width="100%" height="520" src="https://mrgamingstreams.com/crack-8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+            }
+        }
 
     // Automatically load the Clappr player on page load with Stream 1
     window.onload = function() {
-        showClapprPlayer('https://linear.stvacdn.spectrum.com/LIVE/1166/dash/cenc/ESPNDHD_13667/manifest.mpd');
+        showClapprPlayer('https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8');
     };
 </script>
 </body>
 </html>
 </div>
+
 
 
 
