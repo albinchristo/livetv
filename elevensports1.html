@@ -1,60 +1,108 @@
 
-<html lang="es">
-  <head>
+
+
+<!DOCTYPE html><html><head>
+<title>.AWANI | DeportesGratis.US</title>
+<style>div a img{visibility:hidden;}body{margin:0;background-color: black;}</style>
+<meta name='viewport' content='width=device-width, initial-scale=1.0' />
+<meta name="referrer" content="no-referrer" />
   
-  <meta name="robots" content="noindex" />
-  <style type="text/css">
-  
-  body {
-     margin: 0;
-     padding: 0;
-  }
-  </style>
-  </head>
-  
-  <script type="text/javascript">
-  function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\[").replace(/[\]]/, "\]");
-    var regex = new RegExp("[\?&]" + name + "=([^&#]*)"),
-    results = regex.exec(location.search);
-    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-  }
-  
-  
+<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js' crossorigin='anonymous'></script>
+<!-- <script src="./?js=920&libraryfont=Arial"></script> -->
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/controls.min.css' crossorigin='anonymous' />
+
+<center><b><p style="color:white; opacity:0.27;">DeportesGratis.US</p></b>
+	<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player poster="https://media.tenor.com/cjFvpqYMRuYAAAAi/turbo-boost.gif" id='video' style='width:100%;height:100%;'></video>
+
+</div>
+  <script>
+
+function MyManifestParser() {
+  this.curId_ = 0;
+  this.config_ = null;
+}
+
+MyManifestParser.prototype.configure = function(config) {
+  this.config_ = config;
+};
+
+MyManifestParser.prototype.start = async function(uri, playerInterface) {
+  const type = shaka.net.NetworkingEngine.RequestType.MANIFEST;
+  const request = {
+    uris: [uri],
+    method: 'GET',
+    retryParameters: this.config_.retryParameters
+  };
+  const response =
+      await playerInterface.networkingEngine.request(type, request).promise;
+  return this.loadManifest_(response.data);
+};
+
+MyManifestParser.prototype.stop = function() {
+  return Promise.resolve();
+};
+
+
+shaka.media.ManifestParser.registerParserByExtension('json', MyManifestParser);
+shaka.media.ManifestParser.registerParserByMime(
+    'application/json', MyManifestParser);
   </script>
-  <script src='https://content.jwplatform.com/libraries/KB5zFt7A.js'></script>
+	
+  <script>
+const manifestUri = "https://dce-ak-livewwdazn.akamaized.net/dashdrm/dazn-linear-054/stream.mpd";
+async function init() {
+const video = document.getElementById('video');
+const ui = video['ui'];
+const controls = ui.getControls();
+const player = controls.getPlayer();
+window.player = player;
+window.ui = ui;
+player.setTextTrackVisibility(true);
+player.configure({
+drm: {"clearKeys": {
+"82f8e2a17dac44c0a18f660479349c59": "1b144f73e6fefe91cd05f850e2b589d0"
+},
+},
+preferredTextLanguage: 'ms',
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
-  <script> jwplayer.key='XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';</script>
-  <div id="player"></div>
-  <script type="text/javascript">
-  var playerInstance=jwplayer("player");
+abr: {
+				defaultBandwidthEstimate: 007,
+                enabled: true,
+                restrictions: {
+  			    minHeight: 359,
+  			    maxHeight: 720  		        }
+			},
+});player.addEventListener('error', onPlayerErrorEvent);
+controls.addEventListener('error', onUIErrorEvent);
+try {
+await player.load(manifestUri);
+console.log('The video has now been loaded!');
+} catch (error) {
+onPlayerError(error);
+}
+
+
+
+}
+
+function onPlayerErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function onPlayerError(error) {
+console.error('Error code', error.code, 'object', error);
+}
+
+function onUIErrorEvent(errorEvent) {
+onPlayerError(event.detail);
+}
+
+function initFailed(errorEvent) {
+console.error('Unable to load the UI library!');
+}
+document.addEventListener('shaka-ui-loaded', init);
+document.addEventListener('shaka-ui-load-failed', initFailed);
   
-  playerInstance.setup({
   
-      playlist: [{
-      "title": "Full HD Match",
-      "description": "EN VIVO",
-   
-        "sources": [
-          {
-            "default": false,
-            "type": "dash",
-            "file": "https://dce-ak-livewwdazn.akamaized.net/dashdrm/dazn-linear-054/stream.mpd",
-            "drm": {
-              "clearkey": {"keyId":"82f8e2a17dac44c0a18f660479349c59", "key":"1b144f73e6fefe91cd05f850e2b589d0"}
-            },
-            "label": "0"
-          }
-        ]
-      }],
-      width: "100%",
-      height: "100%",
-      aspectratio: "16:9",
-      autostart: false,
-      cast: {},
-      sharing: {}
-  });
-  </script>
-  
-  </body></html>
+  </script></center>
+</html>
