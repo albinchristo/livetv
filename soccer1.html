@@ -192,12 +192,11 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <!DOCTYPE html>
 <html>
 <head>
+   <head>
     <title>Test</title>
-    <!-- Clappr Player script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
-    <!-- Twitch Embed script -->
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    <!-- Additional CSS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ewwink/clappr-quality-selector-plugin@latest/quality-selector.js"></script>
     <style>
         #video-container {
             position: relative;
@@ -323,7 +322,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 
     // Automatically load the Clappr player on page load with Stream 1
     window.onload = function() {
-        showClapprPlayer('https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8');
+        showClapprPlayer('https://linear.stvacdn.spectrum.com/LIVE/1166/dash/cenc/ESPNDHD_13667/manifest.mpd');
     };
 </script>
 </body>
