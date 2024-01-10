@@ -273,44 +273,62 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
     </div>
 
     <!-- JavaScript to control the visibility of video elements -->
-    <script>
-        var clapprPlayer;
-        var twitchPlayer;
-        var activePlayer;
+   <script>
+    var clapprPlayer;
 
-        function showPlayer(playerType, stream) {
-            if (activePlayer === "twitch" && twitchPlayer) {
-                twitchPlayer.pause();
-            } else if (activePlayer === "clappr" && clapprPlayer) {
-                clapprPlayer.stop();
-            }
+    // Function to show Clappr Player
+    function showClapprPlayer(source) {
+        document.getElementById("clapprPlayer").style.visibility = "visible";
 
-            activePlayer = playerType;
-            var container = document.getElementById("playerContainer");
+        if (clapprPlayer) {
+            clapprPlayer.pause();
+            document.getElementById("clapprPlayer").innerHTML = ""; // Clear the player container
+            initializePlayer(source);
+        } else {
+            initializePlayer(source);
+        }
+    }
 
-            if (playerType === "clappr") {
-                container.innerHTML = ""; // Clear container
-                clapprPlayer = new Clappr.Player({
-                    source: stream,
-                    parentId: "#playerContainer",
-                    height: 520,
-                    width: "100%",
-                    disableVideoTagContextMenu: false,
-                });
-            } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe width="100%" height="360" frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts "  allowtransparency="true" style="border:none" id="iframe" scrolling="no" target="iframe" src="https://video.deportesgratis.us/ch1"  allow="encrypted-media *;" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen player-mode="video"></iframe> ';
+    function initializePlayer(source) {
+        clapprPlayer = new Clappr.Player({
+            source: source,
+            plugins: [DashShakaPlayback, Clappr.PlaybackLevels, QualitySelector],
+            qualitySelectorConfig: {
+                title: 'Quality',
+                defaultQuality: -1,
+                labelCallback: function(playbackLevel, customLabel) {
+                    return customLabel + ' ' + playbackLevel.level.height + 'p';
+                }
+            },
+            shakaConfiguration: {
+                drm: {
+                    clearKeys: {
+                        'be65e5985fa04a49af310f0a92a0260a': '1acb5ff7b0dbfdf19c4dca1aabfaaa11'
+                    }
+                },
+                preferredAudioLanguage: 'pt-EN',
+                streaming: {
+                    rebufferingGoal: 1
+                }
+            },
+            parentId: '#clapprPlayer',
+            height: 520,
+            width: "100%",
+            disableVideoTagContextMenu: false,
+        });
+    } else if (playerType === "twitchalt") {
+                container.innerHTML = '<iframe width="100%" height="520" src="https://mrgamingstreams.com/crack-8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
             }
         }
 
-        // Automatically load the Clappr player on page load
-        window.onload = function() {
-            showPlayer('clappr', 'https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8'); // Default stream
-        };
-    </script>
+    // Automatically load the Clappr player on page load with Stream 1
+    window.onload = function() {
+        showClapprPlayer('https://bp1.mrgamingstreams.com/mrgamingsoccer1.m3u8');
+    };
+</script>
 </body>
 </html>
 </div>
-
 
 <footer class="wp-block-template-part">
 <main class="wp-block-group is-layout-flow wp-block-group-is-layout-flow" style="margin-top:var(--wp--preset--spacing--50)"></main>
