@@ -298,13 +298,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe width="100%" height="360" frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts "  allowtransparency="true" style="border:none" id="iframe" scrolling="no" target="iframe" src="https://video.deportesgratis.us/ch4"  allow="encrypted-media *;" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen player-mode="video"></iframe> ';
+                container.innerHTML = '<iframe width="100%" height="360" frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts "  allowtransparency="true" style="border:none" id="iframe" scrolling="no" target="iframe" src="https://live.3friends.store/player1.php?https://live-ak.vimeocdn.com/exp=1704993845~acl=%2F68905b20-eb8a-48d3-8616-e3b78bd8ca52%2F%2A~hmac=dfa8338042612b63239d2b9fa93acc559905342ac16a8f021101f665f940af67/68905b20-eb8a-48d3-8616-e3b78bd8ca52/hls.m3u8?min_seconds=30"  allow="encrypted-media *;" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen player-mode="video"></iframe> ';
             }
         }
 
         // Automatically load the Clappr player on page load
         window.onload = function() {
-            showPlayer('twitch', 'https://video.deportesgratis.us/ch4'); // Default stream
+            showPlayer('twitch', 'https://live.3friends.store/player1.php?https://live-ak.vimeocdn.com/exp=1704993845~acl=%2F68905b20-eb8a-48d3-8616-e3b78bd8ca52%2F%2A~hmac=dfa8338042612b63239d2b9fa93acc559905342ac16a8f021101f665f940af67/68905b20-eb8a-48d3-8616-e3b78bd8ca52/hls.m3u8?min_seconds=30'); // Default stream
         };
     </script>
 </body>
