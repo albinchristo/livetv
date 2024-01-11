@@ -1,75 +1,27 @@
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
 
+<div id="oper"></div>
 
-<!DOCTYPE html><html><head>
-<title>.AWANI | DeportesGratis.US</title>
-<style>div a img{visibility:hidden;}body{margin:0;background-color: black;}</style>
-<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-<meta name="referrer" content="no-referrer" />
-  
-<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js' crossorigin='anonymous'></script>
-<!-- <script src="./?js=920&libraryfont=Arial"></script> -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/controls.min.css' crossorigin='anonymous' />
+<div id="vid"></div>
 
-<center><b><p style="color:white; opacity:0.27;">DeportesGratis.US</p></b>
-	<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player poster="https://media.tenor.com/cjFvpqYMRuYAAAAi/turbo-boost.gif" id='video' style='width:100%;height:100%;'></video>
+<script>
 
-</div>
-  <script>
-const manifestUri = "https://linear003-gb-dash1-prd-ll.cdn.skycdp.com/016a/Content/DASH_003_sd/Live/channel(tntsport1)/manifest_sd.mpd";
-async function init() {
-const video = document.getElementById('video');
-const ui = video['ui'];
-const controls = ui.getControls();
-const player = controls.getPlayer();
-window.player = player;
-window.ui = ui;
-player.setTextTrackVisibility(true);
-player.configure({
-drm: {"clearKeys": {
-"0003e5d66d7501ff2930c80e9b5609fc": "32661be41b5b713dcd88683cd389af21"
-},
-},
-preferredTextLanguage: 'ms',
-  
-abr: {
-				defaultBandwidthEstimate: 007,
-                enabled: true,
-                restrictions: {
-  			    minHeight: 359,
-  			    maxHeight: 720  		        }
-			},
-});player.addEventListener('error', onPlayerErrorEvent);
-controls.addEventListener('error', onUIErrorEvent);
-try {
-await player.load(manifestUri);
-console.log('The video has now been loaded!');
-} catch (error) {
-onPlayerError(error);
-}
+ player = new Clappr.Player({
 
+ source: "https://live-ak.vimeocdn.com/exp=1704993845~acl=%2F68905b20-eb8a-48d3-8616-e3b78bd8ca52%2F%2A~hmac=dfa8338042612b63239d2b9fa93acc559905342ac16a8f021101f665f940af67/68905b20-eb8a-48d3-8616-e3b78bd8ca52/hls.m3u8?min_seconds=30",
 
+ mimeType: "application/x-mpegURL",
 
-}
+ autoPlay: true, 
 
-function onPlayerErrorEvent(errorEvent) {
-onPlayerError(event.detail);
-}
+ height: "300",
 
-function onPlayerError(error) {
-console.error('Error code', error.code, 'object', error);
-}
+ width: "100%",
 
-function onUIErrorEvent(errorEvent) {
-onPlayerError(event.detail);
-}
+ plugins: {"core": [LevelSelector]}, 
 
-function initFailed(errorEvent) {
-console.error('Unable to load the UI library!');
-}
-document.addEventListener('shaka-ui-loaded', init);
-document.addEventListener('shaka-ui-load-failed', initFailed);
-  
-  
-  </script></center>
-</html>
+ parentId: "#vid"});
+
+</script>
