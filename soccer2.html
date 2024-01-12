@@ -298,13 +298,13 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
                     disableVideoTagContextMenu: false,
                 });
             } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe sandbox="allow-forms allow-same-origin allow-scripts " class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://ienjoyhd.site/live/embed.php?ch=es148" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
+                container.innerHTML = '<iframe sandbox="allow-forms allow-same-origin allow-scripts " class="embed-responsive-item" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen="" src="https://vimeo.com/event/4013585/embed/interaction" scrolling="no" width="100%" height="442" style="margin-top: 5px; margin-left: 10px; overflow: hidden; transform: scaleX(1.0) scaleY(1.0); transform-origin: top;"></iframe>';
             }
         }
 
         // Automatically load the Clappr player on page load
         window.onload = function() {
-            showPlayer('clappr', 'https://247b.mrgamingstreams.com/mrgamingespn2.m3u8'); // Default stream
+            showPlayer('twitch', 'https://vimeo.com/event/4013585/embed/interaction'); // Default stream
         };
     </script>
 </body>
