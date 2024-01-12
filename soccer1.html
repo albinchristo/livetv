@@ -187,17 +187,16 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <p></p>
 
 
+
 <div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-1 wp-block-columns-is-layout-flex">
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%">
 <!DOCTYPE html>
 <html>
 <head>
     <title>Test</title>
-    <!-- Clappr Player script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
-    <!-- Twitch Embed script -->
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    <!-- Additional CSS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ewwink/clappr-quality-selector-plugin@latest/quality-selector.js"></script>
     <style>
         #video-container {
             position: relative;
@@ -205,7 +204,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             height: 520px;
         }
 
-        .player {
+        #clapprPlayer {
             position: absolute;
             top: 0;
             height: 100%;
@@ -226,7 +225,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             border-radius: 15px;
             background-color: #0c4662;
             color: white;
-            border: 2px solid #136e9b;
+            border: 2px #136e9b;
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
@@ -239,77 +238,84 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
         }
     </style>
 </head>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <ins class="adsbygoogle"
+         style="display:inline-block;width:728px;height:90px"
+         data-full-width-responsive="true"
+         data-ad-client="ca-pub-8695615805843515"
+         data-ad-slot="5591780678"></ins>
+      <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
 <body>
-	
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515"
-     crossorigin="anonymous"></script>
-<!-- NewWp -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8695615805843515"
-     data-ad-slot="3682605423"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-</br>
-	</br>
-
     <!-- Video Container -->
     <div id="video-container">
         <!-- Button Container -->
         <div class="btn-container">
-            <button class="btn" onclick="showPlayer('clappr', 'https://247b.mrgamingstreams.com/mrgamingespn2.m3u8')">Stream 2 Spanish</button>
-            <button class="btn" onclick="showPlayer('clappr', 'https://wenkisterin.latsyoving.xyz/live/n-1/chunks.m3u8')">Stream 3 Spanish</button>
-            <button class="btn" onclick="showPlayer('twitch', 'mrgaming991')">English FEED (PC ONLY)</button>
-        </div>
-	</br>
-	</br>
+            <button class="btn" onclick="showClapprPlayer('https://bp2.mrgamingstreams.com/sportsmax.m3u8)">Stream 1</button>
 
-        <!-- Players -->
-        <div class="player" id="playerContainer"></div>
+            <button class="btn" onclick="showClapprPlayer('https://linear036-ie-dash1-prd-ak.cdn.skycdp.com/016a/Content/DASH_003_hd/Live/channel(premier2sports50)/manifest_hd.mpd')">RAW FEED (PC ONLY)</button>
+        </div>
+
+        <!-- Clappr Player -->
+        <div id="clapprPlayer"></div>
     </div>
 
-    <!-- JavaScript to control the visibility of video elements -->
-    <script>
-        var clapprPlayer;
-        var twitchPlayer;
-        var activePlayer;
+<script>
+    var clapprPlayer;
 
-        function showPlayer(playerType, stream) {
-            if (activePlayer === "twitch" && twitchPlayer) {
-                twitchPlayer.pause();
-            } else if (activePlayer === "clappr" && clapprPlayer) {
-                clapprPlayer.stop();
-            }
+    // Function to show Clappr Player
+    function showClapprPlayer(source) {
+        document.getElementById("clapprPlayer").style.visibility = "visible";
 
-            activePlayer = playerType;
-            var container = document.getElementById("playerContainer");
-
-            if (playerType === "clappr") {
-                container.innerHTML = ""; // Clear container
-                clapprPlayer = new Clappr.Player({
-                    source: stream,
-                    parentId: "#playerContainer",
-                    height: 520,
-                    width: "100%",
-                    disableVideoTagContextMenu: false,
-                });
-            } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe src="https://vimeo.com/event/4011682/embed/interaction" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>';
-            }
+        if (clapprPlayer) {
+            clapprPlayer.pause();
+            document.getElementById("clapprPlayer").innerHTML = ""; // Clear the player container
+            initializePlayer(source);
+        } else {
+            initializePlayer(source);
         }
+    }
 
-        // Automatically load the Clappr player on page load
-        window.onload = function() {
-            showPlayer('twitch', 'https://vimeo.com/event/4011682/embed/interaction'); // Default stream
-        };
-    </script>
+    function initializePlayer(source) {
+        clapprPlayer = new Clappr.Player({
+            source: source,
+            plugins: [DashShakaPlayback, Clappr.PlaybackLevels, QualitySelector],
+            qualitySelectorConfig: {
+                title: 'Quality',
+                defaultQuality: -1,
+                labelCallback: function(playbackLevel, customLabel) {
+                    return customLabel + ' ' + playbackLevel.level.height + 'p';
+                }
+            },
+            shakaConfiguration: {
+                drm: {
+                    clearKeys: {
+                        '000354713f5113fd49f41f556bdf1add': '9a6ca88b3b6c7088c8197a7366f2e7e5'
+                    }
+                },
+                preferredAudioLanguage: 'pt-EN',
+                streaming: {
+                    rebufferingGoal: 1
+                }
+            },
+            parentId: '#clapprPlayer',
+            height: 520,
+            width: "100%",
+            disableVideoTagContextMenu: false,
+        });
+    }
+
+    // Automatically load the Clappr player on page load with Stream 1
+    window.onload = function() {
+        showClapprPlayer('https://mcdn.mrgamingstreams.com/sportsmax.m3u8');
+    };
+</script>
 </body>
 </html>
 </div>
+
+
 
 
 <footer class="wp-block-template-part">
