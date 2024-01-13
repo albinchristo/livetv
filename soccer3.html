@@ -187,17 +187,16 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 <p></p>
 
 
+
 <div class="wp-block-columns alignwide is-layout-flex wp-container-core-columns-layout-1 wp-block-columns-is-layout-flex">
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:100%">
 <!DOCTYPE html>
 <html>
 <head>
     <title>Test</title>
-    <!-- Clappr Player script -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@clappr/player@latest/dist/clappr.min.js"></script>
-    <!-- Twitch Embed script -->
-    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
-    <!-- Additional CSS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ewwink/clappr-quality-selector-plugin@latest/quality-selector.js"></script>
     <style>
         #video-container {
             position: relative;
@@ -205,7 +204,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             height: 520px;
         }
 
-        .player {
+        #clapprPlayer {
             position: absolute;
             top: 0;
             height: 100%;
@@ -226,7 +225,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
             border-radius: 15px;
             background-color: #0c4662;
             color: white;
-            border: 2px solid #136e9b;
+            border: 2px #136e9b;
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s, border-color 0.3s;
@@ -239,82 +238,7 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
         }
     </style>
 </head>
-<body>
-	
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515"
-     crossorigin="anonymous"></script>
-<!-- NewWp -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8695615805843515"
-     data-ad-slot="3682605423"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
-
-</br>
-	</br>
-
-    <!-- Video Container -->
-    <div id="video-container">
-        <!-- Button Container -->
-        <div class="btn-container">
-            <button class="btn" onclick="showPlayer('clappr', 'https://live-ak.vimeocdn.com/exp=1704993845~acl=%2F68905b20-eb8a-48d3-8616-e3b78bd8ca52%2F%2A~hmac=dfa8338042612b63239d2b9fa93acc559905342ac16a8f021101f665f940af67/68905b20-eb8a-48d3-8616-e3b78bd8ca52/chunklist_b6256000.m3u8?max_segments=10')">Stream 2 Spanish</button>
-            <button class="btn" onclick="showPlayer('clappr', 'https://bl.uma.media/live/126836/HLS/317849_3/2/1/playlist.m3u8')">Stream 3 Spanish</button>
-            <button class="btn" onclick="showPlayer('twitch', 'mrgaming991')">English FEED (PC ONLY)</button>
-        </div>
-	</br>
-	</br>
-
-        <!-- Players -->
-        <div class="player" id="playerContainer"></div>
-    </div>
-
-    <!-- JavaScript to control the visibility of video elements -->
-    <script>
-        var clapprPlayer;
-        var twitchPlayer;
-        var activePlayer;
-
-        function showPlayer(playerType, stream) {
-            if (activePlayer === "twitch" && twitchPlayer) {
-                twitchPlayer.pause();
-            } else if (activePlayer === "clappr" && clapprPlayer) {
-                clapprPlayer.stop();
-            }
-
-            activePlayer = playerType;
-            var container = document.getElementById("playerContainer");
-
-            if (playerType === "clappr") {
-                container.innerHTML = ""; // Clear container
-                clapprPlayer = new Clappr.Player({
-                    source: stream,
-                    parentId: "#playerContainer",
-                    height: 520,
-                    width: "100%",
-                    disableVideoTagContextMenu: false,
-                });
-            } else if (playerType === "twitch") {
-                container.innerHTML = '<iframe width="100%" height="360" frameborder="0" sandbox="allow-forms allow-same-origin allow-scripts "  allowtransparency="true" style="border:none" id="iframe" scrolling="no" target="iframe" src="https://v3.sportsonline.so/channels/hd/hd6.php"  allow="encrypted-media *;" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen player-mode="video"></iframe> ';
-            }
-        }
-
-        // Automatically load the Clappr player on page load
-        window.onload = function() {
-            showPlayer('twitch', 'https://v3.sportsonline.so/channels/hd/hd6.php'); // Default stream
-        };
-    </script>
-</body>
-</html>
-</div>
-
-
-<footer class="wp-block-template-part">
-<main class="wp-block-group is-layout-flow wp-block-group-is-layout-flow" style="margin-top:var(--wp--preset--spacing--50)"></main>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       <ins class="adsbygoogle"
          style="display:inline-block;width:728px;height:90px"
          data-full-width-responsive="true"
@@ -323,6 +247,79 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
       <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
       </script>
+<body>
+    <!-- Video Container -->
+    <div id="video-container">
+        <!-- Button Container -->
+        <div class="btn-container">
+            <button class="btn" onclick="showClapprPlayer('https://mcdn.mrgamingstreams.com/sportsmax.m3u8')">Stream 1 (EN)</button>
+            <button class="btn" onclick="showClapprPlayer('https://mlb.mrgamingstreams.com/espnd.m3u8')">Stream 2 (ES)</button>
+            <button class="btn" onclick="showClapprPlayer('https://linear.stvacdn.spectrum.com/LIVE/1166/dash/cenc/ESPNDHD_13667/manifest.mpd')">RAW FEED (PC ONLY)</button>
+        </div>
+
+        <!-- Clappr Player -->
+        <div id="clapprPlayer"></div>
+    </div>
+
+<script>
+    var clapprPlayer;
+
+    // Function to show Clappr Player
+    function showClapprPlayer(source) {
+        document.getElementById("clapprPlayer").style.visibility = "visible";
+
+        if (clapprPlayer) {
+            clapprPlayer.pause();
+            document.getElementById("clapprPlayer").innerHTML = ""; // Clear the player container
+            initializePlayer(source);
+        } else {
+            initializePlayer(source);
+        }
+    }
+
+    function initializePlayer(source) {
+        clapprPlayer = new Clappr.Player({
+            source: source,
+            plugins: [DashShakaPlayback, Clappr.PlaybackLevels, QualitySelector],
+            qualitySelectorConfig: {
+                title: 'Quality',
+                defaultQuality: -1,
+                labelCallback: function(playbackLevel, customLabel) {
+                    return customLabel + ' ' + playbackLevel.level.height + 'p';
+                }
+            },
+            shakaConfiguration: {
+                drm: {
+                    clearKeys: {
+                        'be65e5985fa04a49af310f0a92a0260a': '1acb5ff7b0dbfdf19c4dca1aabfaaa11'
+                    }
+                },
+                preferredAudioLanguage: 'pt-EN',
+                streaming: {
+                    rebufferingGoal: 1
+                }
+            },
+            parentId: '#clapprPlayer',
+            height: 520,
+            width: "100%",
+            disableVideoTagContextMenu: false,
+        });
+    }
+
+    // Automatically load the Clappr player on page load with Stream 1
+    window.onload = function() {
+        showClapprPlayer('https://mcdn.mrgamingstreams.com/sportsmax.m3u8');
+    };
+</script>
+</body>
+</html>
+</div>
+
+
+
+<footer class="wp-block-template-part">
+<main class="wp-block-group is-layout-flow wp-block-group-is-layout-flow" style="margin-top:var(--wp--preset--spacing--50)"></main>
+
     <!-- Your Adsense Code Ends Here-->
 <!-- AddToAny BEGIN -->
 <div class="a2a_kit a2a_kit_size_32 a2a_floating_style a2a_default_style" style="bottom:0px; right:0px;">
