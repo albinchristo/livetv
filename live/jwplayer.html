@@ -1,0 +1,36 @@
+
+<script src="//ssl.p.jwpcdn.com/player/v/8.30.0/jwplayer.js"></script> 
+<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; 
+</script> 
+<div id="player"></div> 
+<script> 
+ 
+    var playerInstance = jwplayer("player"); 
+ 
+    playerInstance.setup({ 
+ 
+        playlist: [{ 
+            title: "", 
+            image: "", 
+            description: "", 
+            "sources": [ 
+                { 
+                    "default": false, 
+                    "type": "dash", 
+                    "file": 'https://ottb.live.cf.ww.aiv-cdn.net/dub-nitro/live/clients/dash/enc/tu06vubgf9/out/v1/7668f47d28e345979c072e361f3d3ce3/cenc.mpd', 
+                    "drm": { 
+                        "clearkey": { "keyId": "6d08b265a6639e32da7c880d5491e3d2", "key": "0c92556ca14b95f367993710e7cfbc94" } 
+                    }, 
+                    "label": "0" 
+                } 
+            ] 
+        }],
+        width: "100%", 
+        height: "100%", 
+        aspectratio: "16:9", 
+        autostart: true, 
+        cast: {}, 
+        sharing: {} 
+    }); 
+ 
+</script>
