@@ -1,9 +1,4 @@
-	<script>
-if (top.location == self.location) { 
-top.location = "https://ehuse.ro/wp-content/uploads/2022/06/Accesul-Interzis.jpeg"; 
-} 
-</script>
-<!DOCTYPE html>
+	<!DOCTYPE html>
  <html>
 
 <head>
@@ -450,15 +445,15 @@ top.location = "https://ehuse.ro/wp-content/uploads/2022/06/Accesul-Interzis.jpe
                     .notloaded .bmpui-ui-buffering-overlay-indicator{
                         display:inline-block!important
                     }
-                    #playerdiv indicator{
+                    #my-player indicator{
                         background:#fff;
                         height:1em;
                         margin:.5em;
                         width:1em;
                         border-radius:10px
                         </style>
-<script type="text/javascript" src="https://cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
-<div id="playerdiv"></div>
+    <script type="text/javascript" src="//cdn.bitmovin.com/player/web/8/bitmovinplayer.js"></script>
+<div id="my-player"></div>
 <script type="text/javascript">
             function override(url){ if (url.indexOf("licensing.bitmovin.com/licensing") > - 1) return "data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ=="; if (url.indexOf("licensing.bitmovin.com/impression") > - 1) return "data:text/plain;charset=utf-8;base64,eyJzdGF0dXMiOiJncmFudGVkIiwibWVzc2FnZSI6IlRoZXJlIHlvdSBnby4ifQ=="; return url; }
             var opens = XMLHttpRequest.prototype.open; XMLHttpRequest.prototype.open = function() {var url = override(arguments[1]); arguments[1] = url; return opens.apply(this, arguments); }
@@ -477,6 +472,7 @@ top.location = "https://ehuse.ro/wp-content/uploads/2022/06/Accesul-Interzis.jpe
 </div>
 </div>
 </body>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171538704-1"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() {
