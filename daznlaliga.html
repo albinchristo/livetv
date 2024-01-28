@@ -1,108 +1,65 @@
 
 
+<html>
 
-<!DOCTYPE html><html><head>
-<title>.AWANI | DeportesGratis.US</title>
-<style>div a img{visibility:hidden;}body{margin:0;background-color: black;}</style>
-<meta name='viewport' content='width=device-width, initial-scale=1.0' />
-<meta name="referrer" content="no-referrer" />
-  
-<script src='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.ui.min.js' crossorigin='anonymous'></script>
-<!-- <script src="./?js=920&libraryfont=Arial"></script> -->
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/controls.min.css' crossorigin='anonymous' />
+<head>
+    <meta name="referrer" content="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/shaka-player.ui.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.6/controls.min.css" crossorigin="anonymous" />
+</script>
+<body bgcolor='black' style='margin:0'>
+</script>
+</head>
 
-<center><b><p style="color:white; opacity:0.27;">DeportesGratis.US</p></b>
-	<div data-shaka-player-container style='position:absolute;z-index: -1;top: 0;left: 0;width: 100%; height: 100%;object-fit: cover;'><video autoplay data-shaka-player poster="https://media.tenor.com/cjFvpqYMRuYAAAAi/turbo-boost.gif" id='video' style='width:100%;height:100%;'></video>
+<body>
+    <center>
+            <div data-shaka-player-container style='width: 100%; height: 100%'>
+            <video autoplay data-shaka-player id='video' style='width:100%;height:100%;'></video>
+        </div>
+    </center>
+    <script>
+        const manifestUri = "https://live.ll.ww.aiv-cdn.net/OTTB/dub-nitro/live/clients/dash/enc/wjgklbtvhh/out/v1/659736a1e24c40e4865a80ffd75e7de7/cenc.mpd";
+        async function init() {
+            const video = document.getElementById('video');
+            const ui = video['ui'];
+            const controls = ui.getControls();
+            const player = controls.getPlayer();
+            window.player = player;
+            window.ui = ui;
+            player.configure({
+                drm: {
+                    "clearKeys": {
+                        "43d1c3b25207ff38b22ccfe17d302367":"7b1f85f6e81059473b114c16a25c829a"
+                    }
+                }
+            });
+            player.addEventListener('error', onPlayerErrorEvent);
+            controls.addEventListener('error', onUIErrorEvent);
+            try {
+                await player.load(manifestUri);
+                console.log('The video has now been loaded!');
+            } catch (error) {
+                onPlayerError(error);
+            }}
 
-</div>
-  <script>
+        function onPlayerErrorEvent(errorEvent) {
+            onPlayerError(event.detail);
+        }
 
-function MyManifestParser() {
-  this.curId_ = 0;
-  this.config_ = null;
-}
+        function onPlayerError(error) {
+            console.error('Error code', error.code, 'object', error);
+        }
 
-MyManifestParser.prototype.configure = function(config) {
-  this.config_ = config;
-};
+        function onUIErrorEvent(errorEvent) {
+            onPlayerError(event.detail);
+        }
 
-MyManifestParser.prototype.start = async function(uri, playerInterface) {
-  const type = shaka.net.NetworkingEngine.RequestType.MANIFEST;
-  const request = {
-    uris: [uri],
-    method: 'GET',
-    retryParameters: this.config_.retryParameters
-  };
-  const response =
-      await playerInterface.networkingEngine.request(type, request).promise;
-  return this.loadManifest_(response.data);
-};
+        function initFailed(errorEvent) {
+            console.error('Unable to load the UI library!');
+        }
+        document.addEventListener('shaka-ui-loaded', init);
+        document.addEventListener('shaka-ui-load-failed', initFailed);
+    </script>
+</body>
 
-MyManifestParser.prototype.stop = function() {
-  return Promise.resolve();
-};
-
-
-shaka.media.ManifestParser.registerParserByExtension('json', MyManifestParser);
-shaka.media.ManifestParser.registerParserByMime(
-    'application/json', MyManifestParser);
-  </script>
-	
-  <script>
-const manifestUri = "https://dce-ak-livewwdazn.akamaized.net/dashdrm/dazn-linear-043/stream.mpd";
-async function init() {
-const video = document.getElementById('video');
-const ui = video['ui'];
-const controls = ui.getControls();
-const player = controls.getPlayer();
-window.player = player;
-window.ui = ui;
-player.setTextTrackVisibility(true);
-player.configure({
-drm: {"clearKeys": {
-"82f8e2a17dac44c0a18f660479349c59": "1b144f73e6fefe91cd05f850e2b589d0"
-},
-},
-preferredTextLanguage: 'ms',
-  
-abr: {
-				defaultBandwidthEstimate: 007,
-                enabled: true,
-                restrictions: {
-  			    minHeight: 359,
-  			    maxHeight: 720  		        }
-			},
-});player.addEventListener('error', onPlayerErrorEvent);
-controls.addEventListener('error', onUIErrorEvent);
-try {
-await player.load(manifestUri);
-console.log('The video has now been loaded!');
-} catch (error) {
-onPlayerError(error);
-}
-
-
-
-}
-
-function onPlayerErrorEvent(errorEvent) {
-onPlayerError(event.detail);
-}
-
-function onPlayerError(error) {
-console.error('Error code', error.code, 'object', error);
-}
-
-function onUIErrorEvent(errorEvent) {
-onPlayerError(event.detail);
-}
-
-function initFailed(errorEvent) {
-console.error('Unable to load the UI library!');
-}
-document.addEventListener('shaka-ui-loaded', init);
-document.addEventListener('shaka-ui-load-failed', initFailed);
-  
-  
-  </script></center>
 </html>
