@@ -1,0 +1,25 @@
+         /* if desktop */
+  .HeaderRightMobile {
+  display: none;
+  margin-right: 30px;
+  margin-top: 25px;
+  align-items: center;
+  justify-content: center;
+}
+.webtitle {display: none;}
+
+        /* if device max width 1276px */
+  @media (max-width: 1276px) {
+  .tagline {display: none;}
+  .HeaderRightMobile{display: flex;}
+  .HeaderRight {display: none;}
+  .webtitle {display: none;}
+  .webtitlemobile {display: block;}
+  .logo {display: none;}
+}
+
+@media (max-width: 1000px) {
+  .headertxt {font-size: 18px;}
+  .HeaderRight {gap: .4em;}
+}
+Copilots
