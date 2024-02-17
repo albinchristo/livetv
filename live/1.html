@@ -1,1 +1,111 @@
-g
+
+<html lang="en">
+<head>
+    
+</head>
+<body>
+<div id="player"></div>
+<div class="hide row ads" style="display:none;">
+    <div class="col-12">
+        <div class="alert alert-danger text-center mt-3" role="alert">
+            Please disable Adblock to proceed to the destination page.
+        </div>
+    </div>
+</div>
+<script src="https://embedstreamgate.com/js/embed/clappr.min.js"></script>
+<script src="https://embedstreamgate.com/js/embed/hlsjs-p2p-engine.min.js"></script>
+<script src="https://embedstreamgate.com/js/embed/clappr-plugin.min.js"></script>
+<script src="https://embedstreamgate.com/js/embed/level-selector.min.js"></script>
+<!-- Google tag (gtag.js) -->
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-RVQDQBDGD0');
+</script>
+<script>
+
+    // let player = null;
+
+    // function setupIframe() {
+
+    console.log('https://dnjhey93.azureedge.net/live/65b9e03a5eae1/playlist.m3u8')
+
+        try {
+        let playerElement = document.getElementById("player");
+        // if (player == null) {
+        player = new Clappr.Player({
+            source: "https://dnjhey93.azureedge.net/live/65b9e03a5eae1/playlist.m3u8",
+            height: '100%',
+            width: '100%',
+            loop: 'true',
+            plugins: [LevelSelector, CDNByeClapprPlugin],
+            mediacontrol: {
+                seekbar: '#014AFF',
+                buttons: '#FFF'
+            },
+            playback: {
+                hlsjsConfig: {
+                    maxBufferSize: 0,
+                    maxBufferLength: 10,
+                    liveSyncDurationCount: 10,
+                    p2pConfig: {
+                        live: true,
+                    }
+                }
+            },
+            mimeType: "application/x-mpegURL"
+        });
+        player.attachTo(playerElement);
+
+        // }
+
+        function resizePlayer() {
+            let aspectRatio = 9 / 16,
+                newWidth = document.getElementById('player').parentElement.offsetWidth,
+                newHeight = 2 * Math.round(newWidth * aspectRatio / 2);
+            player.resize({
+                width: newWidth,
+                height: newHeight
+            });
+        }
+
+        resizePlayer();
+        window.onresize = resizePlayer;
+    } catch (err) {
+        console.log(err)
+    }
+    // }
+
+    // function checkAdsBlock() {
+    //     let test = new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+    //         {method: "HEAD", mode: "no-cors"}
+    //     );
+    //     fetch(test).then(res => {
+    //         console.log("Success")
+    //         $("#player").show();
+    //         $(".ads").hide();
+    //         setupIframe();
+    //     }).catch(err => {
+    //         console.log("Error")
+    //         $("#player").hide();
+    //         $(".ads").show();
+    //     });
+    //
+    //     let adsWidth = document.getElementsByClassName('ads');
+    //
+    //     if (adsWidth.length > 0 && adsWidth[0].offsetWidth === 0){
+    //         console.log("Adblocker detected. Please deactivate your adblocker");
+    //     } else {
+    //         console.log("No adblocker present");
+    //     }
+    // }
+
+    // window.addEventListener("load", () => checkAdsBlock());
+    // $(document).ready(function () {
+    //     setInterval(checkAdsBlock, 5000);
+    // })
+</script>
+</body>
+</html>
