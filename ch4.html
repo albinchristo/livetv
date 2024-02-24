@@ -1,27 +1,25 @@
-<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+<!-- Paste the following into the <head>  -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
+<style>
+ #clappr{ width: 100%;height: 100%;position: relative; min-height: 320px; margin-bottom: 25px;}
+ #clappr > div{ width:100%;height:100%;position: absolute;}
+</style>
 
-<div id="oper"></div>
 
-<div id="vid"></div>
+<!-- Paste the following into the <body> -->
 
+<div id="clappr"></div>
 <script>
-
- player = new Clappr.Player({
-
- source: "https://trans.mrgaminghoster.xyz/mrgamingsoccer.m3u8",
-
- mimeType: "application/x-mpegURL",
-
- autoPlay: true, 
-
- height: "100%",
-
- width: "100%",
-
- plugins: {"core": [LevelSelector]}, 
-
- parentId: "#vid"});
-
-</script>
+ var player = new Clappr.Player({
+  source:
+       "https://5caf24a595d94.streamlock.net:1937/nmxdsdnfux/nmxdsdnfux/playlist.m3u8"
+   ,
+    parentId: "#clappr",
+  width: '100%',
+  height: '100%',
+  autoPlay: false,
+    //gaAccount: 'UA-44332211-1',
+  //gaTrackerName: 'MyPlayerInstance'
+  });
+</script>            
