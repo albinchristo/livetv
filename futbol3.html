@@ -131,8 +131,8 @@
                         width: "100%",
                         disableVideoTagContextMenu: false,
                     });
-                } else if (playerType === "clappr") {
-                    container.innerHTML = '<iframe id="clappr" src=""https://twitter.com/brokendeejay04/status/1769439870316171529?ref_src=twsrc%5Etfw" frameborder="0" allow="autoplay" allowfullscreen height="520" width="100%"></iframe>';
+                } else if (playerType === "twitchalt2") {
+                    container.innerHTML = '<iframe id="twitch" src="https://player.kick.com/Motorsport_Television_DE" frameborder="0" allow="autoplay" allowfullscreen height="520" width="100%"></iframe>';
                 }
                 
                 
@@ -140,7 +140,7 @@
     
             // Automatically load the Clappr player on page load
             window.onload = function() {
-                showPlayer('clappr', 'https://mcdn.mrgaminghoster.xyz/mrgamingindy.m3u8'); // Default stream
+                showPlayer('twitchalt2', 'https://player.kick.com/Motorsport_Television_DE'); // Default stream
             };
         </script>
             </div>
