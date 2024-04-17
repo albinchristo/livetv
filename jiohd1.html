@@ -1,63 +1,31 @@
 
-
-<html>
-    <head> 
-  <script src="//lcipembjfkmeggpihdpdgnjildgniffl/clappr.min.js"></script>
-  <script src="//lcipembjfkmeggpihdpdgnjildgniffl/level-selector.min.js"></script>
-  <script src="//lcipembjfkmeggpihdpdgnjildgniffl/clappr-pip.min.js"></script>
-  <script src="//lcipembjfkmeggpihdpdgnjildgniffl/dash-shaka-playback.js"></script>
-  <style>
-body{
-    margin: 0%;
-    background-color: black;
-}
-
-  </style>
-</head>
-<body>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
 
+<div id="oper"></div>
 
 <div id="vid"></div>
+
 <script>
 
-var playerElement = document.getElementById("vid");
-
  player = new Clappr.Player({
- source: "https://66368cdf63a9.ap-northeast-2.playback.live-video.net/api/video/v1/ap-northeast-2.585677956555.channel.oqyRRpOKrCic.m3u8?token=eyJhbGciOiJFUzM4NCIsInR5cCI6IkpXVCJ9.eyJhd3M6Y2hhbm5lbC1hcm4iOiJhcm46YXdzOml2czphcC1ub3J0aGVhc3QtMjo1ODU2Nzc5NTY1NTU6Y2hhbm5lbC9vcXlSUnBPS3JDaWMiLCJleHAiOjE3MDgyMDk2MTU0MjcsImlhdCI6MTcwODE2NjQxNX0.KJrx3kI_hLpQFU1juIrF2Ep7b9ViMefjTPHp1WYujGcjsyXxyI9GUuS81P9xgIYGHlFtJJPY2BZacMqE0IwxcJeivf8Qqv4DnyonrAVmEKjwt7lI1cBwG2ZnUscvDggm&player_version=1.20.0",
+
+ source: "https://v.dinkin1005.com/live/65b9e03a1e2c8/chunks.m3u8",
+  
  mimeType: "application/x-mpegURL",
- autoPlay: 1, 
+
+ autoPlay: true, 
+
  height: "100%",
+
  width: "100%",
+
  plugins: {"core": [LevelSelector]}, 
 
- events: {onReady: function() {var plugin = this.getPlugin('click_to_pause'); plugin && plugin.disable();},},
- chromecast: {
-            appId: '9DFB77C0',
-            contentType: 'video/mp4',
-        },
- shakaOnBeforeLoad: function (shaka_player) {},
+ watermark: "https://gifdb.com/images/high/telegram-alerts-join-now-animation-vy7i86cunhc2tsvk.webp", position: 'bottom-right', 
+ watermarkLink: "https://telegram.me/joinchat/+hteNma28pJw2YjU1",position: "top-right",
+
  parentId: "#vid"});
 
- player.attachTo(playerElement);
-
-player.core.activePlayback.on(Clappr.Events.PLAYBACK_LEVELS_AVAILABLE, function(levels) {
-  player.core.activePlayback.currentLevel = 1 // Your preferred level here
-})
 </script>
-</script>
-<script>function toggleFullscreen() {
-  let elem = document.querySelector("iframe");
-
-  if (!document.fullscreenElement) {
-    elem.requestFullscreen().catch((err) => {
-      alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-    });
-  } else {
-    document.exitFullscreen();
-  }
-}</script>
-
-
-<!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c49f6f12ce824114a175c949047575e1"}'></script><!-- Cloudflare Pages Analytics --></body></html>
