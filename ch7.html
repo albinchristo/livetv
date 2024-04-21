@@ -63,10 +63,6 @@ $(document).ready(function() {
           sharing : {}
         });
         
-        playerInstance.on('error', function(event) {
-          if (event.code === 232403) {
-            location.reload();
-          }
         });
       }
     };
