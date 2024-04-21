@@ -1,77 +1,32 @@
 
-<!DOCTYPE html>
-<html>
-<head>
-    
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
+
+<div id="oper"></div>
+
+<div id="vid"></div>
+
+<script>
+
+ player = new Clappr.Player({
+
+ source: "https://v1.3friends.store/mlaliga/index.m3u8",
   
-    
-<meta name="robots" content="noindex">
-<meta charset="UTF-8">
-<title>Player 1</title>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src='https://content.jwplatform.com/libraries/KB5zFt7A.js'></script>
-<script> jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo'; </script>
-<style>
-  .instagram-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #405de6;
-    color: #ffffff;
-    padding: 5px 10px; /* Reducido el padding */
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-    z-index: 9999;
-    font-size: 14px; /* Tamaño de fuente reducido */
-  }
-</style>
-</head>
-<body style="padding: 0px; margin:0px; position: relative;">
-<div id="player"></div>
-<a href="https://www.instagram.com/dazc_fut19/" target="_blank" class="instagram-button">Sígueme en Instagram</a>
-<script type="text/javascript">
-$(document).ready(function() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const eventId = urlParams.get('id');
-  const eventImg = urlParams.get('img');
+ mimeType: "application/x-mpegURL",
 
-  function setupPlayer() {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://d4zc.asia/tr/dazc.php');
-    xhr.onload = function() {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        var playerInstance = jwplayer("player");
+ autoPlay: true, 
 
-        playerInstance.setup({
-          playlist : [{
-            title : "DeportesGratis",
-	        description: "https://t.me/+WouxXnv_r2ViOWZl",
-            image: "https://d4zc.asia/img/HLS.png",
-            sources : [{
-              default : false,
-              file : atob(data.hls), 
-              label : "0",
-              type : "hls"
-            }],
-          }],
-          width : "100%",
-          height : "100%",
-          aspectratio : "16:9",
-          autostart : false,
-          sharing : {}
-        });
-        
-        });
-      }
-    };
-    xhr.send();
-  }
+ height: "100%",
 
-  setupPlayer(); 
+ width: "100%",
 
-});
+ plugins: {"core": [LevelSelector]}, 
+
+ watermark: "https://gifdb.com/images/high/telegram-alerts-join-now-animation-vy7i86cunhc2tsvk.webp", position: 'bottom-right', 
+ watermarkLink: "https://telegram.me/joinchat/+hteNma28pJw2YjU1",position: "top-right",
+
+ parentId: "#vid"});
+
 </script>
-</body>
-</html>
+
