@@ -117,8 +117,6 @@ hs.src = ('//s10.histats.com/js15_as.js');
  
 </style>    
 
-<body class="flex flex-col h-screen justify-between dark:bg-slate-800 dark:text-slate-300 font-sans">
-<div id="navbar"></div>
 
    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515"
      crossorigin="anonymous"></script>
@@ -133,22 +131,8 @@ hs.src = ('//s10.histats.com/js15_as.js');
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
   
-<script>
-            $(document).ready(function() {
-                $("#navbar").load("/html/header.html");
-            });
-         </script>
-  
-<main class="container mx-auto px-4  max-w-7xl mb-auto">
-<div class="my-3">
-<div id="title"> 
-<script>    var titleParam = getParameterByName('title');   
-    if (titleParam) {
-        var titleElement = document.getElementById('title');
-        if (titleElement) {
-            titleElement.innerHTML = '<h1 class="text-3xl m-3">' + titleParam + '</h1>';
-        }
-    }</script></div>
+
+
 <div class="grid md:grid-cols-5 gap-3">
  <div class="md:col-span-3 player w-full mx-auto">
  <div id="opciones" style="display: none;" > <button class="btn btn-md" onclick="reproducirVideo(1)">Opción 1</button>
