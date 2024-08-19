@@ -5,25 +5,25 @@ function createEventHtml(event) {
   eventDiv.classList.add('event');
 
   const title = document.createElement('h2');
-  title.textContent = event.event_title;
+  title.textContent = event.title;
   eventDiv.appendChild(title);
 
   const start = document.createElement('p');
-  start.textContent = `Event Start: ${event.event_start}`;
+  start.textContent = `Event Start: ${event.start}`;
   eventDiv.appendChild(start);
 
   const category = document.createElement('p');
-  category.textContent = `Category: ${event.category_name}`;
+  category.textContent = `Category: ${event.category.name}`;
   eventDiv.appendChild(category);
 
   const league = document.createElement('p');
-  league.textContent = `League: ${event.league_name}`;
+  league.textContent = `League: ${event.league.name}`;
   eventDiv.appendChild(league);
 
   const channels = document.createElement('div');
   channels.classList.add('channels');
   // Assuming channel_embeds provides valid HTML for iframes
-  channels.innerHTML = event.channel_embeds;
+  channels.innerHTML = event.channels_embeds.join(''); // Join iframe strings
   eventDiv.appendChild(channels);
 
   return eventDiv;
