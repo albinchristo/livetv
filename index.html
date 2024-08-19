@@ -1,103 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Event Display</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .event {
-            border: 1px solid #ddd;
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        .event-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-        .event-details {
-            margin: 10px 0;
-        }
-        .iframe-container {
-            margin-top: 15px;
-        }
-    </style>
-</head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sports Events</title>
+  <link rel="stylesheet" href="style.css"> </head>
 <body>
-
-    <div id="events-container"></div>
-
-    <script>
-        async function fetchAndDisplayEvents() {
-            const apiUrl = 'https://sons-stream.com/api/v1/'; // Replace with your actual API endpoint
-
-            try {
-                const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                
-                const events = await response.json();
-                console.log('Fetched events:', events); // Debugging output
-                renderEvents(events);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                document.getElementById('events-container').textContent = 'Failed to load events.';
-            }
-        }
-
-        function renderEvents(events) {
-            const container = document.getElementById('events-container');
-
-            if (events.length === 0) {
-                container.textContent = 'No events available.';
-                return;
-            }
-
-            events.forEach(event => {
-                const eventDiv = document.createElement('div');
-                eventDiv.className = 'event';
-
-                // Event title
-                const title = document.createElement('div');
-                title.className = 'event-title';
-                title.textContent = event.event_title;
-                eventDiv.appendChild(title);
-
-                // Event details
-                const details = document.createElement('div');
-                details.className = 'event-details';
-                details.innerHTML = `
-                    <p><strong>Start Time:</strong> ${new Date(event.event_start).toLocaleString()}</p>
-                    <p><strong>Category:</strong> ${event.category_name}</p>
-                    <p><strong>League:</strong> ${event.league_name}</p>
-                `;
-                eventDiv.appendChild(details);
-
-                // Add iframes
-                const iframeContainer = document.createElement('div');
-                iframeContainer.className = 'iframe-container';
-                const iframes = JSON.parse(event.channel_embeds.replace(/'/g, '"')); // replace single quotes with double quotes
-
-                iframes.forEach(iframe => {
-                    const iframeElement = document.createElement('iframe');
-                    iframeElement.src = iframe;
-                    iframeElement.width = "600";
-                    iframeElement.height = "400";
-                    iframeContainer.appendChild(iframeElement);
-                });
-
-                eventDiv.appendChild(iframeContainer);
-
-                container.appendChild(eventDiv);
-            });
-        }
-
-        // Fetch and display events on page load
-        document.addEventListener('DOMContentLoaded', fetchAndDisplayEvents);
-    </script>
-
-</body>
+  <div class="container">
+    <h1>Upcoming Sports Events</h1>
+    <div id="event-container"></div>
+  </div>
+  <script src="script.js"></script> </body>
 </html>
