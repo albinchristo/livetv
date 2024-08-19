@@ -1,47 +1,52 @@
-fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
-  .then((response) => {
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error("NETWORK RESPONSE ERROR");
-    }
-  })
-  .then(data => {
-    console.log(data);
-    displayCocktail(data)
-  })
-  .catch((error) => console.error("FETCH ERROR:", error));
+const eventContainer = document.getElementById('event-container');
 
-function displayCocktail(data) {
-  const cocktail = data.drinks[0];
-  const cocktailDiv = document.getElementById("cocktail");
-  // cocktail name
-  const cocktailName = cocktail.strDrink;
-  const heading = document.createElement("h1");
-  heading.innerHTML = cocktailName;
-  cocktailDiv.appendChild(heading);
-  // cocktail image
-  const cocktailImg = document.createElement("img");
-  cocktailImg.src = cocktail.strDrinkThumb;
-  cocktailDiv.appendChild(cocktailImg);
-  document.body.style.backgroundImage = "url('" + cocktail.strDrinkThumb + "')";
-  // cocktail ingredients
-  const cocktailIngredients = document.createElement("ul");
-  cocktailDiv.appendChild(cocktailIngredients);
-  const getIngredients = Object.keys(cocktail)
-    .filter(function (ingredient) {
-      return ingredient.indexOf("strIngredient") == 0;
-    })
-    .reduce(function (ingredients, ingredient) {
-      if (cocktail[ingredient] != null) {
-        ingredients[ingredient] = cocktail[ingredient];
-      }
-      return ingredients;
-    }, {});
-  for (let key in getIngredients) {
-    let value = getIngredients[key];
-    listItem = document.createElement("li");
-    listItem.innerHTML = value;
-    cocktailIngredients.appendChild(listItem);
-  }
+function createEventHtml(event) {
+  const eventDiv = document.createElement('div');
+  eventDiv.classList.add('event');
+
+  const title = document.createElement('h2');
+  title.textContent = event.event_title;
+  eventDiv.appendChild(title);
+
+  const start = document.createElement('p');
+  start.textContent = `Event Start: ${event.event_start}`;
+  eventDiv.appendChild(start);
+
+  const category = document.createElement('p');
+  category.textContent = `Category: ${event.category_name}`;
+  eventDiv.appendChild(category);
+
+  const league = document.createElement('p');
+  league.textContent = `League: ${event.league_name}`;
+  eventDiv.appendChild(league);
+
+  const channels = document.createElement('div');
+  channels.classList.add('channels');
+  // Assuming channel_embeds provides valid HTML for iframes
+  channels.innerHTML = event.channel_embeds;
+  eventDiv.appendChild(channels);
+
+  return eventDiv;
 }
+
+function fetchEvents() {
+  fetch('https://sons-stream.com/api/v1/') // Replace with actual API endpoint
+    .then(response => response.json())
+    .then(data => {
+      if (data.success && data.data) {
+        data.data.forEach(event => {
+          const eventHtml = createEventHtml(event);
+          eventContainer.appendChild(eventHtml);
+        });
+      } else {
+        console.error('Error fetching events:', data.error);
+        // Handle API errors gracefully (e.g., display an error message)
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching events:', error);
+      // Handle network errors gracefully (e.g., display an error message)
+    });
+}
+
+fetchEvents();
