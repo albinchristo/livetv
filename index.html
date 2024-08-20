@@ -5,103 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Events</title>
     <style>
-        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #121212;
-            color: #f5f5f5;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        h1 {
-            font-size: 3em;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #1db954;
-        }
-
-        /* Event Card Styles */
-        .event {
-            background-color: #1e1e1e;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
-            overflow: hidden;
-            width: 100%;
-            max-width: 800px;
-            transition: transform 0.2s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-        .event:hover {
-            transform: translateY(-10px);
-            border-color: #1db954;
-        }
-        .event-header {
-            padding: 20px;
-            background-color: #1db954;
-            color: #fff;
-            font-weight: 600;
-            font-size: 1.5em;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            text-align: center;
-        }
-        .event-details {
-            padding: 20px;
-            display: none;
-        }
-
-        /* Event Info Styles */
-        .event-details p {
-            margin: 10px 0;
-            font-size: 1em;
+            background-color: #f3f4f6;
+            color: #333;
+            margin: 20px;
+            padding: 0;
             line-height: 1.6;
         }
-        .links-container {
-            margin-top: 20px;
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        .event {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            overflow: hidden;
+            cursor: pointer;
+            transition: box-shadow 0.3s ease;
+        }
+        .event:hover {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .event-header {
+            padding: 12px 20px;
+            background-color: #1e40af;
+            color: #fff;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .event-title {
+            font-size: 1rem;
+        }
+        .event-time {
+            font-size: 0.85rem;
+            color: #ddd;
+        }
+        .event-details {
+            padding: 15px;
+            display: none;
+        }
+        .iframe-container {
+            margin-top: 15px;
+        }
+        iframe {
+            border: none;
+            width: 100%;
+            height: 450px;
+            border-radius: 8px;
+        }
+        .event-date {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin: 20px 0 10px;
+            text-transform: uppercase;
+        }
+        .link-list {
+            margin-top: 10px;
+            padding-left: 20px;
             display: flex;
             flex-direction: column;
             gap: 10px;
         }
         .link-item {
-            display: flex;
-            justify-content: center;
-        }
-        .link-item a {
             display: inline-block;
-            padding: 12px 24px;
-            background-color: #333;
+            padding: 8px 16px;
+            background-color: #1e40af;
             color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
             text-decoration: none;
-            border-radius: 25px;
-            transition: background-color 0.2s ease;
-            font-weight: 500;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        .link-item a:hover {
-            background-color: #1db954;
+        .link-item:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5em;
-            }
-            .event-header {
-                font-size: 1.3em;
-            }
-            .event-details p {
-                font-size: 0.95em;
-            }
-            .link-item a {
-                padding: 10px 20px;
-                font-size: 0.9em;
-            }
+        .category-icon {
+            font-size: 1.25rem;
+            margin-right: 10px;
+        }
+        .hidden {
+            display: none;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>Soccer Events</h1>
@@ -123,43 +122,79 @@
             const container = document.getElementById('events-container');
             container.innerHTML = ''; // Clear the loading text
 
-            events.forEach(event => {
-                // Create event HTML
-                const eventDiv = document.createElement('div');
-                eventDiv.className = 'event';
-                eventDiv.innerHTML = `
-                    <div class="event-header">${event.event_title.trim()}</div>
-                    <div class="event-details">
-                        <p><strong>Start Time:</strong> ${new Date(event.event_start).toLocaleString()}</p>
-                        <p><strong>League:</strong> ${event.league_name}</p>
-                        <p><strong>Category:</strong> ${event.category_name}</p>
-                        <div class="links-container"></div>
-                    </div>
-                `;
-                container.appendChild(eventDiv);
+            const eventsByDate = events.reduce((acc, event) => {
+                const date = event.event_start.split(' ')[0];
+                if (!acc[date]) acc[date] = [];
+                acc[date].push(event);
+                return acc;
+            }, {});
 
-                // Handle multiple iframes
-                const linksContainer = eventDiv.querySelector('.links-container');
-                event.channel_embeds.split(',').forEach((iframe, index) => {
-                    const linkItem = document.createElement('div');
-                    linkItem.className = 'link-item';
-                    const srcMatch = iframe.match(/src="([^"]+)"/);
-                    if (srcMatch) {
-                        const src = srcMatch[1];
-                        const encodedSrc = btoa(src);
-                        linkItem.innerHTML = `<a href="https://todopelotatvhd.com/embed/eventos.html?r=${encodedSrc}" target="_blank">Link ${index + 1}</a>`;
-                        linksContainer.appendChild(linkItem);
-                    }
-                });
-            });
+            for (const [date, events] of Object.entries(eventsByDate)) {
+                const dateHeader = document.createElement('div');
+                dateHeader.className = 'event-date';
+                dateHeader.textContent = new Date(date).toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                container.appendChild(dateHeader);
 
-            // Add click event listener to toggle event details
-            document.querySelectorAll('.event').forEach(eventDiv => {
-                eventDiv.addEventListener('click', () => {
-                    const details = eventDiv.querySelector('.event-details');
-                    details.style.display = details.style.display === 'block' ? 'none' : 'block';
+                events.forEach((event, index) => {
+                    const eventDiv = document.createElement('div');
+                    eventDiv.className = 'event';
+
+                    const categoryIcon = getCategoryIcon(event.category_name);
+                    const eventTime = new Date(event.event_start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+                    eventDiv.innerHTML = `
+                        <div class="event-header">
+                            <span class="event-title">
+                                <span class="category-icon">${categoryIcon}</span>
+                                ${event.event_title.trim()}
+                            </span>
+                            <span class="event-time">${eventTime}</span>
+                        </div>
+                        <div class="event-details">
+                            <p><strong>Start Time:</strong> ${event.event_start}</p>
+                            <p><strong>League:</strong> ${event.league_name}</p>
+                            <p><strong>Category:</strong> ${event.category_name}</p>
+                            <div class="link-list"></div>
+                        </div>
+                    `;
+                    container.appendChild(eventDiv);
+
+                    // Add click event listener to toggle event details and display iframe links
+                    eventDiv.querySelector('.event-header').addEventListener('click', () => {
+                        const details = eventDiv.querySelector('.event-details');
+                        const linkList = eventDiv.querySelector('.link-list');
+
+                        if (details.style.display === 'block') {
+                            details.style.display = 'none';
+                            linkList.innerHTML = ''; // Clear links
+                        } else {
+                            details.style.display = 'block';
+                            linkList.innerHTML = ''; // Clear previous links
+
+                            const iframes = event.channel_embeds.split(',');
+                            iframes.forEach((iframe, idx) => {
+                                const encodedSrc = btoa(iframe.match(/src="([^"]+)"/)[1]);
+                                const link = document.createElement('a');
+                                link.href = `https://todopelotatvhd.com/embed/eventos.html?r=${encodedSrc}`;
+                                link.target = '_blank';
+                                link.textContent = `Link ${idx + 1}`;
+                                link.className = 'link-item';
+                                linkList.appendChild(link);
+                            });
+                        }
+                    });
                 });
-            });
+            }
+        }
+
+        function getCategoryIcon(category) {
+            const icons = {
+                soccer: '⚽',
+                basketball: '🏀',
+                tennis: '🎾',
+                // Add more categories and icons as needed
+            };
+            return icons[category.toLowerCase()] || '🏅';
         }
 
         // Fetch and display events on page load
