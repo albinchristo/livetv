@@ -5,47 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soccer Events</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
         }
-        .event {
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
             margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            color: #444;
+        }
+
+        /* Event Card Styles */
+        .event {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
             overflow: hidden;
+            transition: transform 0.2s ease;
             cursor: pointer;
         }
+        .event:hover {
+            transform: scale(1.02);
+        }
         .event-header {
-            padding: 10px;
-            background-color: #f4f4f4;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
             font-weight: bold;
+            font-size: 1.5em;
         }
         .event-details {
-            padding: 10px;
+            padding: 20px;
             display: none;
         }
-        .iframe-container {
-            margin-top: 10px;
+
+        /* Event Info Styles */
+        .event-details p {
+            margin: 10px 0;
+            font-size: 1.1em;
         }
-        iframe {
-            border: none;
-            width: 100%;
-            height: 500px;
+        .links-container {
+            margin-top: 20px;
         }
-        .ad-container {
-            margin: 20px 0;
-            text-align: center;
-            display: none; /* Initially hide the ad container */
+        .link-item {
+            margin-bottom: 10px;
+        }
+        .link-item a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.2s ease;
+        }
+        .link-item a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .event-header {
+                font-size: 1.3em;
+            }
+            .event-details p {
+                font-size: 1em;
+            }
+            .link-item a {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Soccer Events</h1>
     <div id="events-container">Loading...</div>
-
-    <!-- AdSense Script -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515" crossorigin="anonymous"></script>
 
     <script>
         async function fetchEvents() {
@@ -63,7 +105,7 @@
             const container = document.getElementById('events-container');
             container.innerHTML = ''; // Clear the loading text
 
-            events.forEach((event, index) => {
+            events.forEach(event => {
                 // Create event HTML
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'event';
@@ -73,50 +115,31 @@
                         <p><strong>Start Time:</strong> ${event.event_start}</p>
                         <p><strong>League:</strong> ${event.league_name}</p>
                         <p><strong>Category:</strong> ${event.category_name}</p>
-                        <div class="iframe-container">
-                            ${event.channel_embeds}
-                        </div>
-                        <div class="ad-container">
-                            <ins class="adsbygoogle"
-                                 style="display:block"
-                                 data-ad-client="ca-pub-8695615805843515"
-                                 data-ad-slot="4192289897"
-                                 data-ad-format="auto"
-                                 data-full-width-responsive="true"></ins>
-                        </div>
+                        <div class="links-container"></div>
                     </div>
                 `;
                 container.appendChild(eventDiv);
 
-                // Insert ad after every 2 events
-                if ((index + 1) % 2 === 0 && index !== events.length - 1) {
-                    const adContainer = document.createElement('div');
-                    adContainer.className = 'ad-container';
-                    adContainer.innerHTML = `
-                        <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-8695615805843515"
-                             data-ad-slot="4192289897"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
-                    `;
-                    container.appendChild(adContainer);
-                }
+                // Handle multiple iframes
+                const linksContainer = eventDiv.querySelector('.links-container');
+                event.channel_embeds.split(',').forEach((iframe, index) => {
+                    const linkItem = document.createElement('div');
+                    linkItem.className = 'link-item';
+                    const srcMatch = iframe.match(/src="([^"]+)"/);
+                    if (srcMatch) {
+                        const src = srcMatch[1];
+                        const encodedSrc = btoa(src);
+                        linkItem.innerHTML = `<a href="https://todopelotatvhd.com/embed/eventos.html?r=${encodedSrc}" target="_blank">Link ${index + 1}</a>`;
+                        linksContainer.appendChild(linkItem);
+                    }
+                });
             });
 
-            // Add click event listener to toggle event details and show ad
+            // Add click event listener to toggle event details
             document.querySelectorAll('.event').forEach(eventDiv => {
                 eventDiv.addEventListener('click', () => {
                     const details = eventDiv.querySelector('.event-details');
-                    const adContainer = eventDiv.querySelector('.ad-container');
-                    if (details.style.display === 'block') {
-                        details.style.display = 'none';
-                        adContainer.style.display = 'none'; // Hide the ad container if details are collapsed
-                    } else {
-                        details.style.display = 'block';
-                        adContainer.style.display = 'block'; // Show the ad container if details are expanded
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    }
+                    details.style.display = details.style.display === 'block' ? 'none' : 'block';
                 });
             });
         }
