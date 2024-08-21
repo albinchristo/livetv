@@ -3,118 +3,275 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soccer Events</title>
+    <title>MrGamingStreams - Futuristic Soccer Events</title>
     <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #f3f4f6;
-            color: #333;
-            margin: 20px;
-            padding: 0;
-            line-height: 1.6;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            will-change: transform;
         }
-        h1 {
+
+        /* Moving Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 150, 0.2), rgba(0, 205, 255, 0.2), rgba(0, 255, 100, 0.2));
+            background-size: 300% 300%;  /* Reduced the intensity of the animation */
+            animation: moveBackground 20s ease infinite;
+            z-index: -1;
+            filter: blur(6px); /* Reduced the blur to lighten the load */
+        }
+
+        @keyframes moveBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        header {
             text-align: center;
-            color: #444;
-            font-size: 2rem;
-            margin-bottom: 30px;
-            font-weight: 700;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        header h1 {
+            font-size: 2.5rem; /* Adjusted size */
+            color: #fff;
+            text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+            animation: glow 2s ease-in-out infinite alternate;
+            will-change: text-shadow;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-grow: 1;
         }
         .event {
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #fff;
-            overflow: hidden;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4); /* Reduced shadow complexity */
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
-            transition: box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            will-change: transform, box-shadow;
         }
+        .event::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            transition: opacity 0.2s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+        .event:hover::before {
+            opacity: 1;
+            animation: rotate 8s linear infinite; /* Slower rotation */
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
         .event:hover {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transform: scale(1.03); /* Slightly reduced scaling */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
         }
         .event-header {
-            padding: 12px 20px;
-            background-color: #1e40af;
-            color: #fff;
-            font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
         }
         .event-title {
-            font-size: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
         }
         .event-time {
-            font-size: 0.85rem;
+            font-size: 1rem;
             color: #ddd;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
         .event-details {
-            padding: 15px;
+            padding-top: 15px;
             display: none;
-        }
-        .iframe-container {
-            margin-top: 15px;
         }
         iframe {
             border: none;
             width: 100%;
             height: 450px;
-            border-radius: 8px;
-        }
-        .event-date {
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: #1e3a8a;
-            margin: 20px 0 10px;
-            text-transform: uppercase;
+            border-radius: 10px;
+            margin-top: 15px;
         }
         .link-list {
             margin-top: 10px;
-            padding-left: 20px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            align-items: center;
         }
         .link-item {
             display: inline-block;
-            padding: 8px 16px;
-            background-color: #1e40af;
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1d4ed8;
+            font-size: 1rem;
             text-decoration: none;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            border: 1px solid #1d4ed8;
             border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
+            padding: 10px 15px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 60%;
+            transition: all 0.2s ease; /* Reduced transition duration */
         }
         .link-item:hover {
+            color: #fff;
             background-color: #1d4ed8;
-            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+            transform: scale(1.03); /* Slightly reduced scaling */
         }
-        .category-icon {
-            font-size: 1.25rem;
-            margin-right: 10px;
+        .league-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+            vertical-align: middle;
+            transition: transform 0.2s ease; /* Reduced duration */
         }
-        .hidden {
-            display: none;
+        .event:hover .league-logo {
+            transform: scale(1.15); /* Slightly reduced scaling */
+        }
+        .event-date {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #ff8c00;
+            margin: 20px 0;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 1200px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            margin-top: 40px;
+        }
+        footer p {
+            margin: 10px 0;
+        }
+        footer a {
+            color: #ff8c00;
+            text-decoration: none;
+            transition: color 0.2s ease; /* Reduced duration */
+        }
+        footer a:hover {
+            color: #ff0081;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .event-title {
+                font-size: 1.2rem;
+            }
+            .event-time {
+                font-size: 0.85rem;
+            }
+            .link-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+            .event-title {
+                font-size: 1rem;
+            }
+            .event-time {
+                font-size: 0.75rem;
+            }
+            .league-logo {
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+            }
+            .link-item {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Soccer Events</h1>
-    <div id="events-container">Loading...</div>
+    <header>
+        <h1>MrGamingStreams</h1>
+    </header>
+    <div class="container">
+        <div id="events-container">Loading...</div>
+    </div>
+    <footer>
+        <p>&copy; 2024 MrGamingStreams. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
 
     <script>
         async function fetchEvents() {
             try {
                 const response = await fetch('https://sons-stream.com/api/v1/');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
                 const data = await response.json();
+                console.log(data); // To verify the API response
                 displayEvents(data);
             } catch (error) {
                 console.error('Error fetching events:', error);
-                document.getElementById('events-container').innerHTML = 'Failed to load events.';
+                document.getElementById('events-container').innerHTML = 'Failed to load events. Please check the API and try again.';
             }
         }
 
@@ -139,13 +296,13 @@
                     const eventDiv = document.createElement('div');
                     eventDiv.className = 'event';
 
-                    const categoryIcon = getCategoryIcon(event.category_name);
+                    const leagueLogo = getLeagueLogo(event.league_name.trim());
                     const eventTime = new Date(event.event_start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
                     eventDiv.innerHTML = `
                         <div class="event-header">
                             <span class="event-title">
-                                <span class="category-icon">${categoryIcon}</span>
+                                <img src="${leagueLogo}" alt="${event.league_name}" class="league-logo">
                                 ${event.event_title.trim()}
                             </span>
                             <span class="event-time">${eventTime}</span>
@@ -175,7 +332,7 @@
                             iframes.forEach((iframe, idx) => {
                                 const encodedSrc = btoa(iframe.match(/src="([^"]+)"/)[1]);
                                 const link = document.createElement('a');
-                                link.href = `https://todopelotatvhd.com/embed/eventos.html?r=${encodedSrc}`;
+                                link.href = `https://aug.1mrgamingstreams.com/embed/eventos.html?r=${encodedSrc}`;
                                 link.target = '_blank';
                                 link.textContent = `Link ${idx + 1}`;
                                 link.className = 'link-item';
@@ -187,14 +344,16 @@
             }
         }
 
-        function getCategoryIcon(category) {
-            const icons = {
-                soccer: '⚽',
-                basketball: '🏀',
-                tennis: '🎾',
-                // Add more categories and icons as needed
+        function getLeagueLogo(leagueName) {
+            const logos = {
+                'mma/ufc': 'https://backlinkhd.com/assets/uploads/leagues/28.png',
+                'nfl': 'https://backlinkhd.com/assets/uploads/leagues/29.png',
+                'motorsport': 'https://backlinkhd.com/assets/uploads/leagues/9.png',
+                'la liga': 'https://backlinkhd.com/assets/uploads/leagues/79.png',
+                'bundesliga': 'https://backlinkhd.com/assets/uploads/leagues/78.jpg',
+                'premier league': 'https://backlinkhd.com/assets/uploads/leagues/13.png'
             };
-            return icons[category.toLowerCase()] || '🏅';
+            return logos[leagueName.toLowerCase()] || 'https://backlinkhd.com/assets/uploads/leagues/79.png'; // Fallback image
         }
 
         // Fetch and display events on page load
