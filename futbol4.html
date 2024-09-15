@@ -72,6 +72,10 @@
     }
     </script>
 
+    <!-- AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+    <script data-ad-client="ca-pub-8695615805843515" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> <!-- AdSense Auto Ads -->
+
     <!-- Styling -->
     <style>
         body {
@@ -177,6 +181,18 @@
             font-size: 14px;
         }
 
+        /* Sticky Banner Ad */
+        .sticky-banner {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background-color: white;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -208,17 +224,46 @@
     </header>
 
     <div class="container">
-        <!-- Main Title -->
         <h1>Transmisión en Vivo de Fútbol</h1>
 
+        <!-- Sticky Ad Banner -->
+        <div class="sticky-banner">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:50px"
+                 data-ad-client="ca-pub-8695615805843515"
+                 data-ad-slot="1130940532"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- AdSense Auto Ads Ad -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-8695615805843515"
+             data-ad-slot="1130940532"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+
         <!-- Video Player iFrame -->
-        <iframe src="https://streamtp.live/global1.php?stream=espn_deportes" class="video-frame" sandbox="allow-scripts allow-forms allow-same-origin" allowfullscreen></iframe>
+ <div class="video-wrapper">
+        <iframe id="liveStream" 
+                class="video-frame"
+                src="https://v5.sportsonline.si/channels/hd/hd6.php?autoplay=1&mute=0" 
+                allow="autoplay; fullscreen; picture-in-picture; accelerometer; clipboard-write; encrypted-media; gyroscope"
+                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                allowfullscreen>
+        </iframe>
+    </div>
 
         <!-- Call-to-Action Buttons -->
         <div class="cta-buttons">
-            <a href="https://t.me/+FlsxYmKzFFAzNmVl" class="cta-button">Únete a Telegram</a>
+            <a href="https://t.ly/3qEDZ" class="cta-button">Únete a Telegram</a>
             <a href="https://v1.1mrgamingstreams.com/" class="cta-button" target="_blank">Ver Calendario de Partidos</a>
-            <a href="#" class="cta-button">Recibe Actualizaciones</a>
+            <a href="https://t.ly/3qEDZ" class="cta-button">Recibe Actualizaciones</a>
         </div>
 
         <!-- FAQ Section -->
@@ -258,6 +303,30 @@
         &copy; 2024 Deportes Gratis. Todos los derechos reservados.
     </footer>
 
-</body>
+<!-- Optional JavaScript for Fullscreen & Autoplay -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var iframe = document.getElementById('liveStream');
+        
+        // Check if the browser supports fullscreen API
+        function requestFullScreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { /* Firefox */
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { /* IE/Edge */
+                element.msRequestFullscreen();
+            }
+        }
 
+        // Autoplay logic - Automatically play the video on load
+        iframe.addEventListener('load', function () {
+            // Optionally, trigger fullscreen for better user experience
+            requestFullScreen(iframe);
+        });
+    });
+</script>
+</body>
 </html>
