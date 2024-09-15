@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Transmisión en vivo de los mejores partidos de fútbol gratis. Disfruta de La Liga, Premier League y más partidos en tiempo real.">
-    <meta name="keywords" content="fútbol en vivo, streaming de fútbol, deportes gratis, liga, la liga, premier league, partidos en vivo">
+    <meta name="keywords" content="fútbol en vivo, streaming de fútbol, deportes gratis, liga, la liga, premier league, partidos en vivo, ver fútbol online">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph and Twitter Card Tags -->
@@ -21,6 +21,56 @@
 
     <!-- External Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Structured Data for FAQ Rich Snippets -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué partidos de fútbol puedo ver en vivo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ofrecemos transmisiones en vivo de una amplia variedad de competiciones, incluyendo La Liga, Premier League, Champions League, y muchas más. Revisa nuestro calendario de partidos para ver los próximos encuentros."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es gratis ver los partidos en vivo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, todos los partidos que transmitimos en nuestro sitio web son completamente gratuitos. No necesitas pagar para acceder a las transmisiones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Puedo ver los partidos en mi móvil o tablet?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, nuestro sitio está optimizado para funcionar en dispositivos móviles y tablets, lo que te permite ver los partidos en cualquier momento y lugar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Es legal transmitir los partidos en este sitio?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nosotros simplemente enlazamos a transmisiones disponibles públicamente en internet. Te recomendamos que verifiques las leyes locales relacionadas con la transmisión de eventos deportivos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué puedo hacer si la transmisión no funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si la transmisión no está funcionando, te sugerimos que recargues la página o intentes con otra fuente. También puedes revisar nuestra página de soporte en Telegram para obtener ayuda."
+          }
+        }
+      ]
+    }
+    </script>
 
     <!-- Styling -->
     <style>
@@ -86,31 +136,36 @@
             background-color: #a92a2a;
         }
 
-        .live-scores, .upcoming-matches {
-            margin-top: 40px;
+        .faq-section {
+            margin-top: 50px;
         }
 
-        .live-scores h2, .upcoming-matches h2 {
+        .faq-section h2 {
             font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #d32f2f;
-            text-align: center;
             margin-bottom: 20px;
         }
 
-        .score-box, .match-box {
-            display: flex;
-            justify-content: space-between;
-            background-color: #ffffff;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        .faq {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
 
-        .score-box span, .match-box span {
-            font-weight: 600;
+        .faq h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
             color: #333;
+            margin-bottom: 10px;
+        }
+
+        .faq p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
         }
 
         footer {
@@ -120,40 +175,6 @@
             padding: 20px;
             margin-top: 30px;
             font-size: 14px;
-        }
-
-        /* Sticky Ad Styling */
-        .sticky-ad {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            background-color: #fff;
-            text-align: center;
-            padding: 10px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-        }
-
-        /* Native Ad Styling */
-        .native-ad {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .native-ad-title {
-            font-size: 1.2rem;
-            color: #d32f2f;
-            font-family: 'Oswald', sans-serif;
-            margin-bottom: 10px;
-        }
-
-        .native-ad-description {
-            font-size: 0.9rem;
-            color: #333;
         }
 
         /* Responsive Design */
@@ -176,73 +197,8 @@
             .video-frame {
                 height: 300px;
             }
-
-            .sticky-ad {
-                padding: 5px;
-            }
         }
     </style>
-
-    <!-- API Script for Live Match Data -->
-    <script>
-        async function fetchLiveScores() {
-            try {
-                const response = await fetch('https://api.football-data.org/v2/matches', {
-                    headers: { 'X-Auth-Token': '308ed89926b8421cab4e457fb02d213f' } // Replace with your API key
-                });
-                const data = await response.json();
-                const matches = data.matches;
-
-                let liveScoresHTML = '';
-                matches.forEach(match => {
-                    liveScoresHTML += `
-                        <div class="score-box">
-                            <span>${match.homeTeam.name}</span>
-                            <span>${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}</span>
-                            <span>${match.awayTeam.name}</span>
-                        </div>
-                    `;
-                });
-
-                document.getElementById('liveScores').innerHTML = liveScoresHTML;
-            } catch (error) {
-                console.error('Error fetching live scores:', error);
-            }
-        }
-
-        async function fetchUpcomingMatches() {
-            try {
-                const response = await fetch('https://api.football-data.org/v2/competitions/PL/matches?status=SCHEDULED', {
-                    headers: { 'X-Auth-Token': '308ed89926b8421cab4e457fb02d213f' } // Replace with your API key
-                });
-                const data = await response.json();
-                const matches = data.matches;
-
-                let upcomingMatchesHTML = '';
-                matches.forEach(match => {
-                    const matchDate = new Date(match.utcDate).toLocaleDateString('es-ES');
-                    const matchTime = new Date(match.utcDate).toLocaleTimeString('es-ES');
-                    upcomingMatchesHTML += `
-                        <div class="match-box">
-                            <span>${match.homeTeam.name}</span>
-                            <span>vs</span>
-                            <span>${match.awayTeam.name}</span>
-                            <span>${matchDate} - ${matchTime}</span>
-                        </div>
-                    `;
-                });
-
-                document.getElementById('upcomingMatches').innerHTML = upcomingMatchesHTML;
-            } catch (error) {
-                console.error('Error fetching upcoming matches:', error);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchLiveScores();
-            fetchUpcomingMatches();
-        });
-    </script>
 </head>
 
 <body>
@@ -255,18 +211,6 @@
         <!-- Main Title -->
         <h1>Transmisión en Vivo de Fútbol</h1>
 
-        <!-- Ad Before iFrame -->
-        <div class="ad-section">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-8695615805843515"
-                 data-ad-slot="1130940532"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-        </div>
-
         <!-- Video Player iFrame -->
         <iframe src="https://livetv-7rn.pages.dev/ch6" class="video-frame" sandbox="allow-scripts allow-forms allow-same-origin" allowfullscreen></iframe>
 
@@ -274,40 +218,39 @@
         <div class="cta-buttons">
             <a href="https://t.me/+FlsxYmKzFFAzNmVl" class="cta-button">Únete a Telegram</a>
             <a href="https://v1.1mrgamingstreams.com/" class="cta-button" target="_blank">Ver Calendario de Partidos</a>
+            <a href="#" class="cta-button">Recibe Actualizaciones</a>
         </div>
 
-        <!-- Native Ad -->
-        <div class="native-ad">
-            <h3 class="native-ad-title">Artículos Relacionados</h3>
-            <p class="native-ad-description">Descubre los mejores consejos y guías para disfrutar de tus partidos de fútbol favoritos, desde la comodidad de tu hogar. <a href="#">Lee más aquí</a>.</p>
-        </div>
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Preguntas Frecuentes (FAQ)</h2>
 
-        <!-- Live Match Scores Section -->
-        <div class="live-scores">
-            <h2>Resultados en Vivo</h2>
-            <div id="liveScores">
-                <!-- Live match scores will be populated here -->
+            <div class="faq">
+                <h3>¿Qué partidos de fútbol puedo ver en vivo?</h3>
+                <p>Ofrecemos transmisiones en vivo de una amplia variedad de competiciones, incluyendo La Liga, Premier League, Champions League, y muchas más. Revisa nuestro <a href="https://v1.1mrgamingstreams.com/">calendario de partidos</a> para ver los próximos encuentros.</p>
             </div>
-        </div>
 
-        <!-- Upcoming Matches Section -->
-        <div class="upcoming-matches">
-            <h2>Próximos Partidos</h2>
-            <div id="upcomingMatches">
-                <!-- Upcoming match details will be populated here -->
+            <div class="faq">
+                <h3>¿Es gratis ver los partidos en vivo?</h3>
+                <p>Sí, todos los partidos que transmitimos en nuestro sitio web son completamente gratuitos. No necesitas pagar para acceder a las transmisiones.</p>
             </div>
+
+            <div class="faq">
+                <h3>¿Puedo ver los partidos en mi móvil o tablet?</h3>
+                <p>Sí, nuestro sitio está optimizado para funcionar en dispositivos móviles y tablets, lo que te permite ver los partidos en cualquier momento y lugar.</p>
+            </div>
+
+            <div class="faq">
+                <h3>¿Es legal transmitir los partidos en este sitio?</h3>
+                <p>Nosotros simplemente enlazamos a transmisiones disponibles públicamente en internet. Te recomendamos que verifiques las leyes locales relacionadas con la transmisión de eventos deportivos.</p>
+            </div>
+
+            <div class="faq">
+                <h3>¿Qué puedo hacer si la transmisión no funciona?</h3>
+                <p>Si la transmisión no está funcionando, te sugerimos que recargues la página o intentes con otra fuente. También puedes revisar nuestra página de soporte en Telegram para obtener ayuda.</p>
+            </div>
+
         </div>
-
-    </div>
-
-    <!-- Sticky Ad at the Bottom -->
-    <div class="sticky-ad">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:320px;height:50px"
-             data-ad-client="ca-pub-8695615805843515"
-             data-ad-slot="6543210987"></ins>
-        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- Footer Section -->
