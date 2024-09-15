@@ -1,14 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <!-- Meta Tags for Responsiveness and SEO -->
+    <!-- Meta Tags for SEO -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Disfruta del streaming en vivo de los mejores partidos de fútbol.">
-    <meta name="keywords" content="fútbol en vivo, streaming de fútbol, deportes gratis, liga, la liga, partidos en vivo">
+    <meta name="description" content="Transmisión en vivo de los mejores partidos de fútbol gratis. Disfruta de La Liga, Premier League y más partidos en tiempo real.">
+    <meta name="keywords" content="fútbol en vivo, streaming de fútbol, deportes gratis, liga, la liga, premier league, partidos en vivo">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph and Twitter Card Tags -->
+    <meta property="og:title" content="Deportes Gratis - Fútbol en Vivo">
+    <meta property="og:description" content="Disfruta del streaming en vivo de los mejores partidos de fútbol. La Liga, Premier League y más partidos en tiempo real.">
+    <meta property="og:image" content="https://deportesgratis.us/logo.png"> <!-- Replace with your logo -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Deportes Gratis - Fútbol en Vivo">
+    <meta name="twitter:description" content="Disfruta del streaming en vivo de los mejores partidos de fútbol. La Liga, Premier League y más partidos en tiempo real.">
+    <meta name="twitter:image" content="https://deportesgratis.us/logo.png">
+
     <title>Deportes Gratis - Fútbol en Vivo</title>
 
-    <!-- External Fonts for a Sports Feel -->
+    <!-- External Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
     <!-- Styling -->
@@ -111,6 +122,18 @@
             font-size: 14px;
         }
 
+        /* Sticky Ad Styling */
+        .sticky-ad {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff;
+            text-align: center;
+            padding: 10px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -130,6 +153,10 @@
 
             .video-frame {
                 height: 300px;
+            }
+
+            .sticky-ad {
+                padding: 5px;
             }
         }
     </style>
@@ -216,6 +243,18 @@
             <a href="#" class="cta-button">Recibe Actualizaciones</a>
         </div>
 
+        <!-- Video Ad Section -->
+        <div class="ad-section">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8695615805843515"
+                 data-ad-slot="1234567890"
+                 data-ad-format="video"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <!-- Live Match Scores Section -->
         <div class="live-scores">
             <h2>Resultados en Vivo</h2>
@@ -232,15 +271,16 @@
             </div>
         </div>
 
-        <!-- Advertisement Section -->
-        <div class="ad-section">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515" crossorigin="anonymous"></script>
-            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8695615805843515" data-ad-slot="1130940532" data-ad-format="auto" data-full-width-responsive="true"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-        </div>
+    </div>
 
+    <!-- Sticky Ad at the Bottom -->
+    <div class="sticky-ad">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:50px"
+             data-ad-client="ca-pub-8695615805843515"
+             data-ad-slot="6543210987"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- Footer Section -->
