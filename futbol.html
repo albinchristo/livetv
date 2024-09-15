@@ -134,6 +134,28 @@
             z-index: 1000;
         }
 
+        /* Native Ad Styling */
+        .native-ad {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .native-ad-title {
+            font-size: 1.2rem;
+            color: #d32f2f;
+            font-family: 'Oswald', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .native-ad-description {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
@@ -191,7 +213,7 @@
         async function fetchUpcomingMatches() {
             try {
                 const response = await fetch('https://api.football-data.org/v2/competitions/PL/matches?status=SCHEDULED', {
-                    headers: { 'X-Auth-Token': 'YOUR_API_KEY' } // Replace with your API key
+                    headers: { 'X-Auth-Token': '308ed89926b8421cab4e457fb02d213f' } // Replace with your API key
                 });
                 const data = await response.json();
                 const matches = data.matches;
@@ -233,6 +255,18 @@
         <!-- Main Title -->
         <h1>Transmisión en Vivo de Fútbol</h1>
 
+        <!-- Ad Before iFrame -->
+        <div class="ad-section">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8695615805843515"
+                 data-ad-slot="1130940532"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+
         <!-- Video Player iFrame -->
         <iframe src="https://livetv-7rn.pages.dev/ch6" class="video-frame" sandbox="allow-scripts allow-forms allow-same-origin" allowfullscreen></iframe>
 
@@ -240,19 +274,12 @@
         <div class="cta-buttons">
             <a href="https://t.me/+FlsxYmKzFFAzNmVl" class="cta-button">Únete a Telegram</a>
             <a href="https://v1.1mrgamingstreams.com/" class="cta-button" target="_blank">Ver Calendario de Partidos</a>
-            <a href="#" class="cta-button">Recibe Actualizaciones</a>
         </div>
 
-        <!-- Video Ad Section -->
-        <div class="ad-section">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" crossorigin="anonymous"></script>
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-8695615805843515"
-                 data-ad-slot="1234567890"
-                 data-ad-format="video"
-                 data-full-width-responsive="true"></ins>
-            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <!-- Native Ad -->
+        <div class="native-ad">
+            <h3 class="native-ad-title">Artículos Relacionados</h3>
+            <p class="native-ad-description">Descubre los mejores consejos y guías para disfrutar de tus partidos de fútbol favoritos, desde la comodidad de tu hogar. <a href="#">Lee más aquí</a>.</p>
         </div>
 
         <!-- Live Match Scores Section -->
