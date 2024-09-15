@@ -75,9 +75,31 @@
             background-color: #a92a2a;
         }
 
-        .ad-section {
+        .live-scores, .upcoming-matches {
+            margin-top: 40px;
+        }
+
+        .live-scores h2, .upcoming-matches h2 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 2rem;
+            color: #d32f2f;
             text-align: center;
-            margin: 30px 0;
+            margin-bottom: 20px;
+        }
+
+        .score-box, .match-box {
+            display: flex;
+            justify-content: space-between;
+            background-color: #ffffff;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .score-box span, .match-box span {
+            font-weight: 600;
+            color: #333;
         }
 
         footer {
@@ -111,6 +133,67 @@
             }
         }
     </style>
+
+    <!-- API Script for Live Match Data -->
+    <script>
+        async function fetchLiveScores() {
+            try {
+                const response = await fetch('https://api.football-data.org/v2/matches', {
+                    headers: { 'X-Auth-Token': 'YOUR_API_KEY' } // Replace with your API key
+                });
+                const data = await response.json();
+                const matches = data.matches;
+
+                let liveScoresHTML = '';
+                matches.forEach(match => {
+                    liveScoresHTML += `
+                        <div class="score-box">
+                            <span>${match.homeTeam.name}</span>
+                            <span>${match.score.fullTime.homeTeam} - ${match.score.fullTime.awayTeam}</span>
+                            <span>${match.awayTeam.name}</span>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('liveScores').innerHTML = liveScoresHTML;
+            } catch (error) {
+                console.error('Error fetching live scores:', error);
+            }
+        }
+
+        async function fetchUpcomingMatches() {
+            try {
+                const response = await fetch('https://api.football-data.org/v2/competitions/PL/matches?status=SCHEDULED', {
+                    headers: { 'X-Auth-Token': 'YOUR_API_KEY' } // Replace with your API key
+                });
+                const data = await response.json();
+                const matches = data.matches;
+
+                let upcomingMatchesHTML = '';
+                matches.forEach(match => {
+                    const matchDate = new Date(match.utcDate).toLocaleDateString('es-ES');
+                    const matchTime = new Date(match.utcDate).toLocaleTimeString('es-ES');
+                    upcomingMatchesHTML += `
+                        <div class="match-box">
+                            <span>${match.homeTeam.name}</span>
+                            <span>vs</span>
+                            <span>${match.awayTeam.name}</span>
+                            <span>${matchDate} - ${matchTime}</span>
+                        </div>
+                    `;
+                });
+
+                document.getElementById('upcomingMatches').innerHTML = upcomingMatchesHTML;
+            } catch (error) {
+                console.error('Error fetching upcoming matches:', error);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchLiveScores();
+            fetchUpcomingMatches();
+        });
+    </script>
 </head>
 
 <body>
@@ -128,8 +211,25 @@
 
         <!-- Call-to-Action Buttons -->
         <div class="cta-buttons">
-            <a href="https://tttttt.me/+gU4Gpgr28LVlYjE1" class="cta-button">Únete a Telegram</a>
+            <a href="https://t.me/+FlsxYmKzFFAzNmVl" class="cta-button">Únete a Telegram</a>
+            <a href="https://v1.1mrgamingstreams.com/" class="cta-button" target="_blank">Ver Calendario de Partidos</a>
             <a href="#" class="cta-button">Recibe Actualizaciones</a>
+        </div>
+
+        <!-- Live Match Scores Section -->
+        <div class="live-scores">
+            <h2>Resultados en Vivo</h2>
+            <div id="liveScores">
+                <!-- Live match scores will be populated here -->
+            </div>
+        </div>
+
+        <!-- Upcoming Matches Section -->
+        <div class="upcoming-matches">
+            <h2>Próximos Partidos</h2>
+            <div id="upcomingMatches">
+                <!-- Upcoming match details will be populated here -->
+            </div>
         </div>
 
         <!-- Advertisement Section -->
