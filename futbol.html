@@ -188,7 +188,7 @@
         async function fetchLiveScores() {
             try {
                 const response = await fetch('https://api.football-data.org/v2/matches', {
-                    headers: { 'X-Auth-Token': 'YOUR_API_KEY' } // Replace with your API key
+                    headers: { 'X-Auth-Token': '308ed89926b8421cab4e457fb02d213f' } // Replace with your API key
                 });
                 const data = await response.json();
                 const matches = data.matches;
