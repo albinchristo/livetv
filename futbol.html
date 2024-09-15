@@ -1,93 +1,153 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-<!-- Begin of Chaport Live Chat code -->
-<script type="text/javascript">
-(function(w,d,v3){
-w.chaportConfig = {
-  appId : '6693a1ee47fd6fd46e05d019'
-};
+    <!-- Meta Tags for Responsiveness and SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Disfruta del streaming en vivo de los mejores partidos de fútbol.">
+    <meta name="keywords" content="fútbol en vivo, streaming de fútbol, deportes gratis, liga, la liga, partidos en vivo">
+    <title>Deportes Gratis - Fútbol en Vivo</title>
 
-if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss)})(window, document);
-</script>
-<!-- End of Chaport Live Chat code -->
-<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6636486203b429001925aae2&product=sop' async='async'></script>
-   <title></title>
-<style id='page-skin-1' type='text/css'><!--
-body {
-margin:0;
-height: 100%;
-overflow-y: hidden;
-}
-.post-title.entry-title {
-display: none;
-}
+    <!-- External Fonts for a Sports Feel -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
---></style>
-   <!-- Histats.com  START  (aync)-->
-<script type="text/javascript">var _Hasync= _Hasync|| [];
-_Hasync.push(['Histats.start', '1,4828817,4,0,0,0,00010000']);
-_Hasync.push(['Histats.fasi', '1']);
-_Hasync.push(['Histats.track_hits', '']);
-(function() {
-var hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;
-hs.src = ('//s10.histats.com/js15_as.js');
-(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);
-})();</script>
-<noscript><a href="/" target="_blank"><img  src="//sstatic1.histats.com/0.gif?4828817&101" alt="online visitors" border="0"></a></noscript>
-<!-- Histats.com  END  -->
+    <!-- Styling -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
 
+        header {
+            background-color: #1d1d1d;
+            padding: 20px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+            font-family: 'Oswald', sans-serif;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?display=swap&family=Oswald&family=Kanit&family=Fjalla+One&family=Poppins"></head>
-<body>
-<div class='section' id='main'><div class='widget Blog' data-version='2' id='Blog1'>
-<div class='blog-posts hfeed container'>
-<article class='post-outer-container'>
-<div class='post-outer'>
-<div class='post'>
+        h1 {
+            text-align: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 3rem;
+            color: #d32f2f;
+            margin-bottom: 20px;
+        }
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PLAYER</title>
+        .video-frame {
+            width: 100%;
+            height: 500px;
+            border: none;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
 
-  <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
-  <script type="text/javascript">
-    jwplayer.key = 'Khpp2dHxlBJHC8MCmLnBuV2jK/DwDnJMniwF6EO9HC/riJ712ZmbHg==';
-  </script>
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            background-color: #d32f2f;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-family: 'Oswald', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #a92a2a;
+        }
+
+        .ad-section {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        footer {
+            background-color: #1d1d1d;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                margin: 10px 0;
+                width: 80%;
+                text-align: center;
+            }
+
+            .video-frame {
+                height: 300px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<div class="header">
-<div class="header"></div>
-<div id="jwplayerDiv"></div>
 
+    <header>
+        Deportes Gratis - Fútbol en Vivo
+    </header>
 
-  <a href="https://t.me/+FlsxYmKzFFAzNmVl"> <button class="custom-button ref">Telegram</button> </a>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515"
-     crossorigin="anonymous"></script>
-<!-- newad -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-8695615805843515"
-     data-ad-slot="1130940532"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    <div class="container">
+        <!-- Main Title -->
+        <h1>Transmisión en Vivo de Fútbol</h1>
 
-   <div class="sharethis-inline-share-buttons"></div>
-   
-<iframe src="https://livetv-7rn.pages.dev/ch6" sandbox="allow-scripts allow-forms allow-same-origin" class="video-frame" frameborder="0" allowfullscreen="yes" style="width: 100%; height: 100%;"></iframe>
-    
+        <!-- Video Player iFrame -->
+        <iframe src="https://livetv-7rn.pages.dev/ch6" class="video-frame" sandbox="allow-scripts allow-forms allow-same-origin" allowfullscreen></iframe>
 
+        <!-- Call-to-Action Buttons -->
+        <div class="cta-buttons">
+            <a href="https://t.me/+FlsxYmKzFFAzNmVl" class="cta-button">Únete a Telegram</a>
+            <a href="#" class="cta-button">Recibe Actualizaciones</a>
+        </div>
 
+        <!-- Advertisement Section -->
+        <div class="ad-section">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8695615805843515" crossorigin="anonymous"></script>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8695615805843515" data-ad-slot="1130940532" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
 
-<style type="text/css">@import url("data:text/css;base64,PHN0eWxlPgogIGh0bWwgewogIGZvbnQtZmFtaWx5OiBQb3BwaW5zOwogIG1hcmdpbjogMDsKICBwYWRkaW5nOiAwCn0KCi5jdXN0b20tYnV0dG9uIHsKICBiYWNrZ3JvdW5kLWNvbG9yOiAjMjczMjM4OwogIGZvbnQtc2l6ZTogMTJweDsKICBjb2xvcjogI2ZmZjsKICBwYWRkaW5nOiA2cHggMTBweDsKICBib3JkZXI6IDJweCBzb2xpZCAjMzAxOTM0OwogIGN1cnNvcjogcG9pbnRlcjsKICBtYXJnaW4tdG9wOiA0cHg7CiAgbWFyZ2luLXJpZ2h0OiAxcHg7CiAgYm9yZGVyLXJhZGl1czogMTZweDsKfQoKLmN1c3RvbS1idXR0b246aG92ZXIgewogIGJhY2tncm91bmQtY29sb3I6ICMzYjQ0NGI7Cn0KCi5yZWYgewogIGJhY2tncm91bmQtY29sb3I6ICNCQTU1RDM7CiAgYm9yZGVyOiAycHggc29saWQgI0JBNTVEMzsKfQogCi55dCB7CiAgYmFja2dyb3VuZC1jb2xvcjogIzI3MzIzODsKICBib3JkZXI6IDJweCBzb2xpZCAjMzAxOTM0Owp9CiAgCiAgCiAgLmpvaW4gewogIGJhY2tncm91bmQtY29sb3I6ICMyQUFCRUU7CiAgYm9yZGVyOiAycHggc29saWQgIzJBQUJFRTsKfQoKLnJlZjpob3ZlciB7CiAgYmFja2dyb3VuZC1jb2xvcjogI0JBNTVEMzsKfQoKLmhlYWRlciB7CiAgdGV4dC1hbGlnbjogY2VudGVyOwogIGJhY2tncm91bmQtY29sb3I6ICMzMzM7CiAgY29sb3I6ICNmZmY7CiAgcGFkZGluZzogMTBweDsKICBmb250LXNpemU6IDI0cHg7Cn0KCi8qKi8KCkBpbXBvcnQgdXJsKC8vZm9udHMuZ29vZ2xlYXBpcy5jb20vY3NzP2ZhbWlseT1MYXRvOjMwMDo0MDApOwoKYm9keSB7CiAgbWFyZ2luOjA7CiAgYmFja2dyb3VuZDogI0UwRTdGMTsKfQoKaDEgewogIGZvbnQtZmFtaWx5OiAnTGF0bycsIHNhbnMtc2VyaWY7CiAgZm9udC13ZWlnaHQ6MzAwOwogIGxldHRlci1zcGFjaW5nOiAycHg7CiAgZm9udC1zaXplOjQ4cHg7Cn0KcCB7CiAgZm9udC1mYW1pbHk6ICdMYXRvJywgc2Fucy1zZXJpZjsKICBsZXR0ZXItc3BhY2luZzogMXB4OwogIGZvbnQtc2l6ZToxNHB4OwogIGNvbG9yOiAjMzMzMzMzOwp9CgouaGVhZGVyIHsKICBwb3NpdGlvbjpyZWxhdGl2ZTsKICB0ZXh0LWFsaWduOmNlbnRlcjsKICBiYWNrZ3JvdW5kOiBsaW5lYXItZ3JhZGllbnQoNjBkZWcsIHJnYmEoODQsNTgsMTgzLDEpIDAlLCByZ2JhKDAsMTcyLDE5MywxKSAxMDAlKTsKICBjb2xvcjp3aGl0ZTsKfQoubG9nbyB7CiAgd2lkdGg6NTBweDsKICBmaWxsOndoaXRlOwogIHBhZGRpbmctcmlnaHQ6MTVweDsKICBkaXNwbGF5OmlubGluZS1ibG9jazsKICB2ZXJ0aWNhbC1hbGlnbjogbWlkZGxlOwp9CgouaW5uZXItaGVhZGVyIHsKICBoZWlnaHQ6NjV2aDsKICB3aWR0aDoxMDAlOwogIG1hcmdpbjogMDsKICBwYWRkaW5nOiAwOwp9CgouZmxleCB7IC8qRmxleGJveCBmb3IgY29udGFpbmVycyovCiAgZGlzcGxheTogZmxleDsKICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsKICBhbGlnbi1pdGVtczogY2VudGVyOwogIHRleHQtYWxpZ246IGNlbnRlcjsKfQoKLndhdmVzIHsKICBwb3NpdGlvbjpyZWxhdGl2ZTsKICB3aWR0aDogMTAwJTsKICBoZWlnaHQ6MTV2aDsKICBtYXJnaW4tYm90dG9tOi03cHg7IC8qRml4IGZvciBzYWZhcmkgZ2FwKi8KICBtaW4taGVpZ2h0OjEwMHB4OwogIG1heC1oZWlnaHQ6MTUwcHg7Cn0KCi5jb250ZW50IHsKICBwb3NpdGlvbjpyZWxhdGl2ZTsKICBoZWlnaHQ6MjB2aDsKICB0ZXh0LWFsaWduOmNlbnRlcjsKICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTsKfQoKLyogQW5pbWF0aW9uICovCgoucGFyYWxsYXggPiB1c2UgewogIGFuaW1hdGlvbjogbW92ZS1mb3JldmVyIDI1cyBjdWJpYy1iZXppZXIoLjU1LC41LC40NSwuNSkgICAgIGluZmluaXRlOwp9Ci5wYXJhbGxheCA+IHVzZTpudGgtY2hpbGQoMSkgewogIGFuaW1hdGlvbi1kZWxheTogLTJzOwogIGFuaW1hdGlvbi1kdXJhdGlvbjogN3M7Cn0KLnBhcmFsbGF4ID4gdXNlOm50aC1jaGlsZCgyKSB7CiAgYW5pbWF0aW9uLWRlbGF5OiAtM3M7CiAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxMHM7Cn0KLnBhcmFsbGF4ID4gdXNlOm50aC1jaGlsZCgzKSB7CiAgYW5pbWF0aW9uLWRlbGF5OiAtNHM7CiAgYW5pbWF0aW9uLWR1cmF0aW9uOiAxM3M7Cn0KLnBhcmFsbGF4ID4gdXNlOm50aC1jaGlsZCg0KSB7CiAgYW5pbWF0aW9uLWRlbGF5OiAtNXM7CiAgYW5pbWF0aW9uLWR1cmF0aW9uOiAyMHM7Cn0KQGtleWZyYW1lcyBtb3ZlLWZvcmV2ZXIgewogIDAlIHsKICAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgtOTBweCwwLDApOwogIH0KICAxMDAlIHsgCiAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDg1cHgsMCwwKTsKICB9Cn0KLypTaHJpbmtpbmcgZm9yIG1vYmlsZSovCkBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkgewogIC53YXZlcyB7CiAgICBoZWlnaHQ6NDBweDsKICAgIG1pbi1oZWlnaHQ6NDBweDsKICB9CiAgLmNvbnRlbnQgewogICAgaGVpZ2h0OjMwbW12aDsKICB9CiAgaDEgewogICAgZm9udC1zaXplOjI0cHg7CiAgfQp9Cjwvc3R5bGU+")</style>
-</div>
+    </div>
 
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 Deportes Gratis. Todos los derechos reservados.
+    </footer>
 
 </body>
+
 </html>
