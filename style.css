@@ -255,3 +255,13 @@ footer a:hover, footer a:focus {
         text-shadow: 0px 0px 20px #00ff99, 0px 0px 40px #00ff99, 0px 0px 50px #00ff99;
     }
 }
+
+/* Enable smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optional: Add smooth scrolling for anchor links */
+a {
+    scroll-behavior: smooth;
+}
