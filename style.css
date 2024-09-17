@@ -111,33 +111,17 @@ footer a:hover, footer a:focus {
     margin-top: 10px;
 }
 
-/* Link List */
 .link-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
+    position: relative;
+    z-index: 100; /* Make sure the link list is above other elements */
 }
 
 .link-item {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    background-color: rgba(0, 204, 255, 0.2);
-    color: var(--secondary-color);
-    box-shadow: 0px 4px 15px rgba(0, 204, 255, 0.4);
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    cursor: pointer; /* Ensure pointer shows */
+    z-index: 101; /* Ensure the link itself is above any background overlays */
+    position: relative;
+    cursor: pointer; /* Shows pointer on hover */
 }
 
-.link-item:hover, .link-item:focus {
-    background-color: var(--secondary-color);
-    color: #fff;
-    transform: scale(1.1);
-    outline: none;
-}
 
 /* FAQ Section */
 .faq-section {
@@ -251,12 +235,3 @@ footer a:hover, footer a:focus {
     }
 }
 
-/* Enable smooth scrolling for the entire page */
-html {
-    scroll-behavior: smooth;
-}
-
-/* Optional: Add smooth scrolling for anchor links */
-a {
-    scroll-behavior: smooth;
-}
