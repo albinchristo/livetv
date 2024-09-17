@@ -1,29 +1,151 @@
+/*
+Theme Name: MrGamingStreams
+Theme URI: https://1mrgamingstreams.com/
+Author: Your Name
+Author URI: https://1mrgamingstreams.com/
+Description: A theme for MrGamingStreams, offering live sports streaming, including F1, DeportesGratis, and other live sports.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Tags: live-streaming, sports, F1, responsive
+Text Domain: mrgamingstreams
+*/
+
+/* Futuristic Website Design */
 body {
-  font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+    flex: 1;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    margin-top: auto;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+footer a {
+    color: #ff8c00;
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #ff0081;
 }
 
 .event {
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
 }
 
-.event h2 {
-  margin-top: 0;
+.event:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 255, 0.8);
 }
 
-.event p {
-  margin-bottom: 5px;
+.event-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.event-title {
+    font-size: 1.3rem;
+    color: #00ff99;
+    text-shadow: 0px 4px 10px rgba(0, 255, 153, 0.6);
+}
+
+.event-time {
+    font-size: 1.2rem;
+    color: #ccc;
+    text-shadow: 0px 4px 10px rgba(204, 204, 255, 0.6);
+}
+
+.event-details {
+    display: none;
+    margin-top: 10px;
+}
+
+.link-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.link-item {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    text-decoration: none;
+    background-color: rgba(0, 204, 255, 0.2);
+    color: #00ccff;
+    box-shadow: 0px 4px 15px rgba(0, 204, 255, 0.4);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.link-item:hover {
+    background-color: #00ccff;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 40px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.faq-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #00ccff;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.faq-question {
+    font-size: 1.3rem;
+    color: #ffcc00;
+}
+
+.faq-answer {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-top: 5px;
+    padding-left: 15px;
 }
