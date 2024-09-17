@@ -70,21 +70,15 @@ footer a:hover, footer a:focus {
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
-.event::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    transition: width 0.4s ease;
-}
-
-.event:hover::before {
+.event-header, .event-title, .event-time {
+    cursor: pointer;
     width: 100%;
+    text-align: left;
 }
 
 .event:hover {
@@ -144,7 +138,6 @@ footer a:hover, footer a:focus {
     transform: scale(1.1);
     outline: none;
 }
-
 
 /* FAQ Section */
 .faq-section {
@@ -265,43 +258,5 @@ html {
 
 /* Optional: Add smooth scrolling for anchor links */
 a {
-    scroll-behavior: smooth;
-}
-/* Add to your existing CSS file */
-
-.event {
-    background: var(--event-bg);
-    border-radius: 15px;
-    margin-bottom: 30px;
-    padding: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 255, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.event-header, .event-title, .event-time {
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
-}
-
-.event:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 255, 0.6);
-}
-
-.container {
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-}
-
-/* Ensure smooth scrolling for links */
-html {
     scroll-behavior: smooth;
 }
