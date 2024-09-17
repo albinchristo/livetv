@@ -1,89 +1,114 @@
-:root {
-    --primary-color: #00ff99;
-    --secondary-color: #00ccff;
-    --hover-color: #ff8c00;
-    --background-color: #1e3c72;
-    --accent-color: #ff0081;
-    --font-color: #ffffff;
-    --event-bg: rgba(255, 255, 255, 0.1);
-}
+/*
+Theme Name: MrGamingStreams Futuristic
+Theme URI: https://mrgamingstreams.com
+Author: Your Name
+Author URI: https://mrgamingstreams.com
+Description: A futuristic WordPress theme for MrGamingStreams.
+Version: 1.0
+*/
 
-/* General Styles */
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, var(--background-color), #2a5298);
-    color: var(--font-color);
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
     overflow-x: hidden;
-    margin: 0;
-    padding: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    will-change: transform;
 }
 
-.container {
-    flex: 1;
+/* Moving Background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 0, 150, 0.2), rgba(0, 205, 255, 0.2), rgba(0, 255, 100, 0.2));
+    background-size: 300% 300%;
+    animation: moveBackground 20s ease infinite;
+    z-index: -1;
+    filter: blur(6px);
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 header {
     text-align: center;
     padding: 20px;
+    margin-bottom: 40px;
 }
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--font-color);
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    margin-top: auto;
+header h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
+    animation: glow 2s ease-in-out infinite alternate;
+    will-change: text-shadow;
 }
 
-footer p {
-    margin: 5px 0;
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+    }
 }
 
-footer a {
-    color: var(--hover-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-grow: 1;
 }
 
-footer a:hover, footer a:focus {
-    color: var(--accent-color);
-}
-
-/* Event Styles */
 .event {
-    background: var(--event-bg);
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 15px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 0 5px 20px rgba(0, 0, 255, 0.4);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     cursor: pointer;
     position: relative;
     overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    will-change: transform, box-shadow;
 }
 
-.event-header, .event-title, .event-time {
-    cursor: pointer;
-    width: 100%;
-    text-align: left;
+.event::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+    transition: opacity 0.2s ease;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.event:hover::before {
+    opacity: 1;
+    animation: rotate 8s linear infinite;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .event:hover {
-    transform: scale(1.05);
-    box-shadow: 0 8px 25px rgba(0, 0, 255, 0.6);
+    transform: scale(1.03);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
 }
 
 .event-header {
@@ -91,147 +116,146 @@ footer a:hover, footer a:focus {
     justify-content: space-between;
     align-items: center;
     padding-bottom: 10px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .event-title {
-    font-size: 1.3rem;
-    color: var(--primary-color);
-    text-shadow: 0px 4px 10px rgba(0, 255, 153, 0.6);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .event-time {
-    font-size: 1.2rem;
-    color: #ccc;
-    text-shadow: 0px 4px 10px rgba(204, 204, 255, 0.6);
+    font-size: 1rem;
+    color: #ddd;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .event-details {
+    padding-top: 15px;
     display: none;
+}
+
+iframe {
+    border: none;
+    width: 100%;
+    height: 450px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.link-list {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .link-item {
-    z-index: 100; /* Ensure the link is above any overlays */
-    position: relative;
-    cursor: pointer;
-}
-
-.event-details {
-    z-index: 99; /* Make sure the event details are behind the link */
-}
-
-
-
-/* FAQ Section */
-.faq-section {
-    margin-top: 40px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-}
-
-.faq-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: var(--secondary-color);
-}
-
-.faq-item {
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-}
-
-.faq-question {
-    font-size: 1.3rem;
-    color: #ffcc00;
-}
-
-.faq-answer {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #1d4ed8;
     font-size: 1rem;
-    color: var(--font-color);
-    margin-top: 5px;
-    padding-left: 15px;
+    text-decoration: none;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border: 1px solid #1d4ed8;
+    border-radius: 5px;
+    padding: 10px 15px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    width: 60%;
+    transition: all 0.2s ease;
+}
+
+.link-item:hover {
+    color: #fff;
+    background-color: #1d4ed8;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
+    transform: scale(1.03);
+}
+
+.league-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 15px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+}
+
+.event:hover .league-logo {
+    transform: scale(1.15);
+}
+
+.event-date {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #ff8c00;
+    margin: 20px 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+footer {
+    padding: 20px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+footer a {
+    color: #ff8c00;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+footer a:hover {
+    color: #ff0081;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
     .event-title {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
-
     .event-time {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
-
-    .container {
-        padding: 10px;
-    }
-
-    .faq-section h2 {
-        font-size: 1.5rem;
+    .link-item {
+        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
     .event-title {
         font-size: 1rem;
     }
-
     .event-time {
-        font-size: 0.9rem;
+        font-size: 0.75rem;
     }
-
+    .league-logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+    }
     .link-item {
-        font-size: 0.9rem;
-    }
-
-    footer {
-        padding: 10px;
-    }
-
-    .faq-section h2 {
-        font-size: 1.2rem;
+        font-size: 0.85rem;
+        padding: 8px 12px;
     }
 }
-
-/* Glowing effect for the title */
-.glowing-title {
-    font-size: 1.3rem;
-    color: var(--primary-color);
-    text-shadow: 0px 4px 10px rgba(0, 255, 153, 0.6);
-    animation: glow 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from {
-        text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color), 0 0 30px var(--primary-color);
-    }
-    to {
-        text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color), 0 0 40px var(--primary-color);
-    }
-}
-
-/* Header title styling with glow effect */
-.glowing-header-title {
-    font-size: 2rem; /* Title size for desktop */
-    color: #00ff99;
-    text-shadow: 0px 0px 10px #00ff99, 0px 0px 20px #00ff99, 0px 0px 30px #00ff99;
-    animation: glow-header 1.5s ease-in-out infinite alternate;
-    margin: 20px 0; /* Add margin above and below */
-    line-height: 1.3; /* Better readability */
-    padding: 10px 0; /* Add some spacing around the title */
-}
-
-@keyframes glow-header {
-    from {
-        text-shadow: 0px 0px 10px #00ff99, 0px 0px 20px #00ff99, 0px 0px 30px #00ff99;
-    }
-    to {
-        text-shadow: 0px 0px 20px #00ff99, 0px 0px 40px #00ff99, 0px 0px 50px #00ff99;
-    }
-}
-
