@@ -227,3 +227,16 @@ footer a:hover {
         text-shadow: 0px 0px 20px #00ff99, 0px 0px 40px #00ff99, 0px 0px 50px #00ff99;
     }
 }
+/* Wrapper for AdSense */
+.adsense-container {
+    margin: 20px auto; /* Center the ad with some space */
+    max-width: 100%; /* Ensure it doesn't exceed the container width */
+    text-align: center; /* Center align the ad */
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+    .adsense-container {
+        margin: 10px auto;
+    }
+}
