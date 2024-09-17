@@ -211,3 +211,19 @@ footer a:hover {
         text-shadow: 0 0 20px #00ff99, 0 0 30px #00ff99, 0 0 40px #00ff99;
     }
 }
+/* Glowing effect for header title */
+.glowing-header-title {
+    font-size: 2.5rem; /* Adjust the size as needed */
+    color: #00ff99; /* Text color */
+    text-shadow: 0px 0px 10px #00ff99, 0px 0px 20px #00ff99, 0px 0px 30px #00ff99;
+    animation: glow-header 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow-header {
+    from {
+        text-shadow: 0px 0px 10px #00ff99, 0px 0px 20px #00ff99, 0px 0px 30px #00ff99;
+    }
+    to {
+        text-shadow: 0px 0px 20px #00ff99, 0px 0px 40px #00ff99, 0px 0px 50px #00ff99;
+    }
+}
