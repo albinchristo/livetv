@@ -111,16 +111,16 @@ footer a:hover, footer a:focus {
     margin-top: 10px;
 }
 
-.link-list {
+.link-item {
+    z-index: 100; /* Ensure the link is above any overlays */
     position: relative;
-    z-index: 100; /* Make sure the link list is above other elements */
+    cursor: pointer;
 }
 
-.link-item {
-    z-index: 101; /* Ensure the link itself is above any background overlays */
-    position: relative;
-    cursor: pointer; /* Shows pointer on hover */
+.event-details {
+    z-index: 99; /* Make sure the event details are behind the link */
 }
+
 
 
 /* FAQ Section */
