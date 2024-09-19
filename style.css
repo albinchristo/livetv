@@ -6,207 +6,146 @@ Author URI: https://mrgamingstreams.com
 Description: A futuristic WordPress theme for MrGamingStreams.
 Version: 1.0
 */
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    background-color: #295f8d;
     color: #ffffff;
-    overflow-x: hidden;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    will-change: transform;
+    margin: 0;
+    padding: 0;
 }
 
-/* Moving Background */
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, rgba(255, 0, 150, 0.2), rgba(0, 205, 255, 0.2), rgba(0, 255, 100, 0.2));
-    background-size: 300% 300%;
-    animation: moveBackground 20s ease infinite;
-    z-index: -1;
-    filter: blur(6px);
-}
-
-@keyframes moveBackground {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
+/* Header */
 header {
     text-align: center;
-    padding: 20px;
-    margin-bottom: 40px;
+    padding: 30px;
 }
 
 header h1 {
-    font-size: 2.5rem;
-    color: #fff;
-    text-shadow: 0px 3px 8px rgba(0, 0, 0, 0.4);
-    animation: glow 2s ease-in-out infinite alternate;
-    will-change: text-shadow;
+    font-size: 3rem;
+    color: #ff80ff;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+    font-weight: 700;
 }
 
-@keyframes glow {
-    from {
-        text-shadow: 0 0 5px #fff, 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-    }
-    to {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
-    }
-}
-
+/* Container for events */
 .container {
-    width: 90%;
     max-width: 1200px;
     margin: 0 auto;
-    flex-grow: 1;
-}
-
-.event {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-date {
+    text-align: center;
+    color: #ff8c00;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Event List */
+.event {
+    background-color: #3874a9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    will-change: transform, box-shadow;
-}
-
-.event::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
-    transition: opacity 0.2s ease;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.event:hover::before {
-    opacity: 1;
-    animation: rotate 8s linear infinite;
-}
-
-@keyframes rotate {
-    100% {
-        transform: rotate(360deg);
-    }
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .event:hover {
-    transform: scale(1.03);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .event-header {
     display: flex;
     justify-content: space-between;
+    width: 100%;
     align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .event-title {
-    font-size: 1.5rem;
     display: flex;
     align-items: center;
-    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-}
-
-.event-time {
-    font-size: 1rem;
-    color: #ddd;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-.event-details {
-    padding-top: 15px;
-    display: none;
-}
-
-iframe {
-    border: none;
-    width: 100%;
-    height: 450px;
-    border-radius: 10px;
-    margin-top: 15px;
-}
-
-.link-list {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.link-item {
-    display: inline-block;
-    margin-bottom: 10px;
-    color: #1d4ed8;
-    font-size: 1rem;
-    text-decoration: none;
-    transition: color 0.2s ease, background-color 0.2s ease;
-    border: 1px solid #1d4ed8;
-    border-radius: 5px;
-    padding: 10px 15px;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    width: 60%;
-    transition: all 0.2s ease;
-}
-
-.link-item:hover {
-    color: #fff;
-    background-color: #1d4ed8;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
-    transform: scale(1.03);
+    font-size: 1.25rem;
 }
 
 .league-logo {
     width: 40px;
     height: 40px;
-    margin-right: 15px;
-    vertical-align: middle;
-    transition: transform 0.2s ease;
+    margin-right: 10px;
 }
 
-.event:hover .league-logo {
-    transform: scale(1.15);
+.event-time {
+    font-size: 1.25rem;
+    color: #d9f2ff;
+    font-weight: 600;
 }
 
-.event-date {
-    font-size: 1.75rem;
-    font-weight: bold;
-    color: #ff8c00;
-    margin: 20px 0;
-    text-align: center;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-}
-
-footer {
-    padding: 20px;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
+/* Event Details (Initially Hidden) */
+.event-details {
+    padding: 10px;
+    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    width: 100%;
-    max-width: 1200px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Links */
+.link-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.link-item {
+    color: #ff0081;
+    padding: 10px;
+    background-color: #ffffff10;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.link-item:hover {
+    background-color: #ff0081;
+    color: #ffffff;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #3874a9;
+    color: #ffffff;
     margin-top: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 footer p {
@@ -216,7 +155,7 @@ footer p {
 footer a {
     color: #ff8c00;
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.3s ease;
 }
 
 footer a:hover {
@@ -225,37 +164,24 @@ footer a:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
     .event-title {
         font-size: 1.2rem;
     }
     .event-time {
-        font-size: 0.85rem;
-    }
-    .link-item {
-        width: 100%;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
     .event-title {
         font-size: 1rem;
     }
     .event-time {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
     }
     .league-logo {
         width: 30px;
         height: 30px;
-        margin-right: 10px;
-    }
-    .link-item {
-        font-size: 0.85rem;
-        padding: 8px 12px;
+        margin-right: 5px;
     }
 }
