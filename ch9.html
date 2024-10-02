@@ -1,1 +1,28 @@
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width:100%;"><iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/tEri0UnYFxY" frameborder="0" allow="autoplay" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/clappr.level-selector/latest/level-selector.min.js"></script>
+
+<div id="oper"></div>
+
+<div id="vid"></div>
+
+<script>
+
+ player = new Clappr.Player({
+
+ source: "https://vadp.pricesaskeloadsc.com:443/global/tudn_usa/index.m3u8?token=fd017c45c822f29658256a81b4a5368e89c8c9f7-6d-1727922531-1727886531",
+
+ mimeType: "application/x-mpegURL",
+
+ autoPlay: true, 
+
+ height: "100%",
+
+ width: "100%",
+
+ plugins: {"core": [LevelSelector]}, 
+
+ parentId: "#vid"});
+
+</script>
